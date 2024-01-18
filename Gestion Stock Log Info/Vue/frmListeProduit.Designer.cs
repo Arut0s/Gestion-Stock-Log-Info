@@ -133,11 +133,29 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // cmbFiltre
             // 
+            this.cmbFiltre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFiltre.FormattingEnabled = true;
             this.cmbFiltre.Items.AddRange(new object[] {
             "(aucun)",
-            "CPU",
-            "GPU"});
+            "Accessoire",
+            "Batterie",
+            "Cable",
+            "Composant",
+            "Consommable",
+            "Consommation interne",
+            "Contrats Maintenance et télémaintenance",
+            "Déplacement",
+            "Entretien véhicule",
+            "Location directe",
+            "Logiciel",
+            "Main d\'oeuvre",
+            "Occasion",
+            "Ordinateur de bureau, AIO, serveur",
+            "Ordinateur portable",
+            "Peripherique",
+            "Reseau",
+            "Sauvegarde Cloud",
+            "Tablette"});
             this.cmbFiltre.Location = new System.Drawing.Point(158, 37);
             this.cmbFiltre.Name = "cmbFiltre";
             this.cmbFiltre.Size = new System.Drawing.Size(121, 24);

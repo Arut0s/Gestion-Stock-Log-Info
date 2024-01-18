@@ -140,8 +140,8 @@ namespace Gestion_Stock_Log_Info.Vue
             List<Fournisseur> lesFournisseurs = new List<Fournisseur>();
             lesFournisseurs.Add(new Fournisseur("NV-2738", "Nvidia", 25, DateTime.Today));
             lesFournisseurs.Add(new Fournisseur("ZV-2738", "Intel", 30, DateTime.Today));
-            Produit produit = new Produit("RTX 4080", "GPU", lesFournisseurs, 40, 4, DateTime.Today);
-            Produit produit1 = new Produit("Intel I9", "CPU", new List<Fournisseur>(), 65, 2, DateTime.Today);
+            Produit produit = new Produit("RTX 4080", "Composant", lesFournisseurs, 40, 4, DateTime.Today);
+            Produit produit1 = new Produit("Intel I9", "Cable", new List<Fournisseur>(), 65, 2, DateTime.Today);
             controle.Ajout(produit);
             controle.Ajout(produit1);
             ActualiserListe();
