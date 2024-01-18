@@ -111,6 +111,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // nudPrixHTProduit
             // 
+            this.nudPrixHTProduit.DecimalPlaces = 2;
             this.nudPrixHTProduit.Location = new System.Drawing.Point(8, 181);
             this.nudPrixHTProduit.Maximum = new decimal(new int[] {
             999999,
@@ -120,9 +121,11 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixHTProduit.Name = "nudPrixHTProduit";
             this.nudPrixHTProduit.Size = new System.Drawing.Size(120, 22);
             this.nudPrixHTProduit.TabIndex = 6;
+            this.nudPrixHTProduit.ValueChanged += new System.EventHandler(this.nudPrixHTProduit_ValueChanged);
             // 
             // nudPrixTTCProduit
             // 
+            this.nudPrixTTCProduit.DecimalPlaces = 2;
             this.nudPrixTTCProduit.Location = new System.Drawing.Point(134, 181);
             this.nudPrixTTCProduit.Maximum = new decimal(new int[] {
             9999999,
@@ -132,6 +135,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixTTCProduit.Name = "nudPrixTTCProduit";
             this.nudPrixTTCProduit.Size = new System.Drawing.Size(120, 22);
             this.nudPrixTTCProduit.TabIndex = 7;
+            this.nudPrixTTCProduit.ValueChanged += new System.EventHandler(this.nudPrixTTCProduit_ValueChanged);
             // 
             // nudQuantite
             // 
@@ -364,6 +368,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixTTCFournisseur.Name = "nudPrixTTCFournisseur";
             this.nudPrixTTCFournisseur.Size = new System.Drawing.Size(120, 22);
             this.nudPrixTTCFournisseur.TabIndex = 22;
+            this.nudPrixTTCFournisseur.ValueChanged += new System.EventHandler(this.nudPrixTTCFournisseur_ValueChanged);
             // 
             // nudPrixHTFournisseur
             // 
@@ -377,6 +382,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixHTFournisseur.Name = "nudPrixHTFournisseur";
             this.nudPrixHTFournisseur.Size = new System.Drawing.Size(120, 22);
             this.nudPrixHTFournisseur.TabIndex = 21;
+            this.nudPrixHTFournisseur.ValueChanged += new System.EventHandler(this.nudPrixHTFournisseur_ValueChanged);
             // 
             // dtpDateDernierAchat
             // 

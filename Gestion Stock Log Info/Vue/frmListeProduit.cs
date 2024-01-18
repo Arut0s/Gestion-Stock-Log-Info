@@ -53,7 +53,7 @@ namespace Gestion_Stock_Log_Info.Vue
                         item.SubItems.Add(lesProduits[k].getQuantite().ToString());
                     }
                     item.SubItems.Add(lesProduits[k].getPrixVente().ToString() + "€");
-                    item.SubItems.Add((lesProduits[k].getPrixVente() * 1.2).ToString() + "€");
+                    item.SubItems.Add(Math.Round((lesProduits[k].getPrixVente() * (decimal)1.2),2).ToString() + "€");
                     item.SubItems.Add(lesProduits[k].getDateDerniereVente().ToShortDateString());
                     if (lesProduits[k].isChecked())
                     {
@@ -239,13 +239,13 @@ namespace Gestion_Stock_Log_Info.Vue
                 if (Commande.Any())
                 {
                     List<string> info = new List<string>();
-                    double totalHT = 0;
+                    decimal totalHT = 0;
                     for (int k = 0; k < Commande.Count; k++)
                     {
-                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + Commande[k].getPrixVente() * lesQuantites[k] + "€ (HT) et "+ Commande[k].getPrixVente()*1.2*lesQuantites[k]+"€ (TTC)");
+                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + Commande[k].getPrixVente() * lesQuantites[k] + "€ (HT) et "+ Math.Round(Commande[k].getPrixVente()*(decimal)1.2*lesQuantites[k],2)+"€ (TTC)");
                         totalHT += Commande[k].getPrixVente() * lesQuantites[k];
                     }
-                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et "+totalHT*1.2+"€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et "+Math.Round(totalHT*(decimal)1.2,2)+"€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         for (int k = 0; k < Commande.Count; k++)
                         {

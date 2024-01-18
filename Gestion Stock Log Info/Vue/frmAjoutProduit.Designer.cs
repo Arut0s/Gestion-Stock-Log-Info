@@ -112,6 +112,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // nudPrixHTProduit
             // 
+            this.nudPrixHTProduit.DecimalPlaces = 2;
             this.nudPrixHTProduit.Location = new System.Drawing.Point(10, 253);
             this.nudPrixHTProduit.Maximum = new decimal(new int[] {
             9999999,
@@ -121,6 +122,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixHTProduit.Name = "nudPrixHTProduit";
             this.nudPrixHTProduit.Size = new System.Drawing.Size(120, 22);
             this.nudPrixHTProduit.TabIndex = 7;
+            this.nudPrixHTProduit.ValueChanged += new System.EventHandler(this.nudPrixHTProduit_ValueChanged);
             // 
             // label5
             // 
@@ -133,6 +135,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // nudPrixTTCProduit
             // 
+            this.nudPrixTTCProduit.DecimalPlaces = 2;
             this.nudPrixTTCProduit.Location = new System.Drawing.Point(205, 253);
             this.nudPrixTTCProduit.Maximum = new decimal(new int[] {
             99999999,
@@ -142,6 +145,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixTTCProduit.Name = "nudPrixTTCProduit";
             this.nudPrixTTCProduit.Size = new System.Drawing.Size(120, 22);
             this.nudPrixTTCProduit.TabIndex = 9;
+            this.nudPrixTTCProduit.ValueChanged += new System.EventHandler(this.nudPrixTTCProduit_ValueChanged);
             // 
             // groupBox1
             // 
@@ -176,7 +180,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // dtpDerniereVente
             // 
-            this.dtpDerniereVente.Location = new System.Drawing.Point(0, 120);
+            this.dtpDerniereVente.Location = new System.Drawing.Point(6, 120);
             this.dtpDerniereVente.Name = "dtpDerniereVente";
             this.dtpDerniereVente.Size = new System.Drawing.Size(242, 22);
             this.dtpDerniereVente.TabIndex = 12;
@@ -241,6 +245,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // nudPrixTTCFournisseur
             // 
+            this.nudPrixTTCFournisseur.DecimalPlaces = 2;
             this.nudPrixTTCFournisseur.Location = new System.Drawing.Point(20, 216);
             this.nudPrixTTCFournisseur.Maximum = new decimal(new int[] {
             999999999,
@@ -250,9 +255,11 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixTTCFournisseur.Name = "nudPrixTTCFournisseur";
             this.nudPrixTTCFournisseur.Size = new System.Drawing.Size(120, 22);
             this.nudPrixTTCFournisseur.TabIndex = 8;
+            this.nudPrixTTCFournisseur.ValueChanged += new System.EventHandler(this.nudPrixTTCFournisseur_ValueChanged);
             // 
             // nudPrixHTFournisseur
             // 
+            this.nudPrixHTFournisseur.DecimalPlaces = 2;
             this.nudPrixHTFournisseur.Location = new System.Drawing.Point(19, 163);
             this.nudPrixHTFournisseur.Maximum = new decimal(new int[] {
             99999999,
@@ -262,6 +269,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.nudPrixHTFournisseur.Name = "nudPrixHTFournisseur";
             this.nudPrixHTFournisseur.Size = new System.Drawing.Size(120, 22);
             this.nudPrixHTFournisseur.TabIndex = 7;
+            this.nudPrixHTFournisseur.ValueChanged += new System.EventHandler(this.nudPrixHTFournisseur_ValueChanged);
             // 
             // txtNomFournisseur
             // 

@@ -11,12 +11,12 @@ namespace Gestion_Stock_Log_Info.Modele
         private string nom;
         private string categorie;
         private List<Fournisseur> fournisseurs;
-        private double prixvente;
+        private decimal prixvente;
         private int quantite;
         private bool ischecked = false;
         private DateTime datedernierevente;
 
-        public Produit(string nom, string categorie, List<Fournisseur> fournisseurs, double prixvente, int quantite, DateTime datedernierevente)
+        public Produit(string nom, string categorie, List<Fournisseur> fournisseurs, decimal prixvente, int quantite, DateTime datedernierevente)
         {
             this.nom = nom;
             this.categorie = categorie;
@@ -46,7 +46,7 @@ namespace Gestion_Stock_Log_Info.Modele
             return this.ischecked;
         }
 
-        public double getPrixVente()
+        public decimal getPrixVente()
         {
             return this.prixvente;
         }
@@ -86,7 +86,7 @@ namespace Gestion_Stock_Log_Info.Modele
             this.quantite = quantite;
         }
 
-        public void setPrixVente(double prixvente)
+        public void setPrixVente(decimal prixvente)
         {
             this.prixvente = prixvente;
         }

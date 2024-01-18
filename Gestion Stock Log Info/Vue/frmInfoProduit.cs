@@ -32,9 +32,9 @@ namespace Gestion_Stock_Log_Info.Vue
             nudQuantite.Value = quantite;
         }
 
-        public void setNudPrixHTProduit(double prix)
+        public void setNudPrixHTProduit(decimal prix)
         {
-            nudPrixHTProduit.Value = Convert.ToDecimal(prix);
+            nudPrixHTProduit.Value = prix;
         }
 
         public void setCmbCategorie(string categorie)
@@ -149,7 +149,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 {
                     DisableProduit();
                     btnModifierProduit.Text = "Modifier";
-                    Produit newProduit = new Produit(txtNom.Text, cmbCategorie.Text, produitActuel.getFournisseurs(), Convert.ToDouble(nudPrixHTProduit.Value), Convert.ToInt32(nudQuantite.Value), dtpDerniereVente.Value);
+                    Produit newProduit = new Produit(txtNom.Text, cmbCategorie.Text, produitActuel.getFournisseurs(), Math.Round(nudPrixHTProduit.Value,2), Convert.ToInt32(nudQuantite.Value), dtpDerniereVente.Value);
                     if (controle.Modif(produitActuel, newProduit))
                     {
                         produitActuel = newProduit;
@@ -176,7 +176,7 @@ namespace Gestion_Stock_Log_Info.Vue
             btnModifierProduit.Text = "Modifier";
             txtNom.Text = produitActuel.getNom();
             nudPrixHTProduit.Value = Convert.ToDecimal(produitActuel.getPrixVente());
-            nudPrixTTCProduit.Value = Convert.ToDecimal(produitActuel.getPrixVente() * 1.2);
+            nudPrixTTCProduit.Value = produitActuel.getPrixVente() * (decimal)1.2;
             nudQuantite.Value = Convert.ToDecimal(produitActuel.getQuantite());
             dtpDerniereVente.Value = produitActuel.getDateDerniereVente();
         }
@@ -197,7 +197,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 {
                     DisableFournisseur();
                     btnAjouterFournisseur.Text = "Ajouter";
-                    Fournisseur fournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Convert.ToDouble(nudPrixHTFournisseur.Value), dtpDateDernierAchat.Value);
+                    Fournisseur fournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Math.Round(nudPrixHTFournisseur.Value,2), dtpDateDernierAchat.Value);
                     produitActuel.getFournisseurs().Add(fournisseur);
                     btnModifierFournisseur.Enabled = true;
                     btnSupprimerFournisseur.Enabled = true;
@@ -255,7 +255,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 {
                     if (txtReferenceFournisseur.Text != "" && txtNomFournisseur.Text != "")
                     {
-                        Fournisseur newfournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Convert.ToDouble(nudPrixHTFournisseur.Value), dtpDateDernierAchat.Value);
+                        Fournisseur newfournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Math.Round(nudPrixHTFournisseur.Value,2), dtpDateDernierAchat.Value);
                         if (!controle.DejaDansLaListe(newfournisseur.getReference(), produitActuel.getFournisseurs()) || newfournisseur.getReference() == fournisseur.getReference())
                             {
                             DisableFournisseur();
@@ -321,6 +321,33 @@ namespace Gestion_Stock_Log_Info.Vue
             }
         }
 
+        private void nudPrixHTProduit_ValueChanged(object sender, EventArgs e)
+        {
+            nudPrixTTCProduit.ValueChanged -= new EventHandler(nudPrixTTCProduit_ValueChanged);
+            nudPrixTTCProduit.Value = nudPrixHTProduit.Value * (decimal)1.2;
+            nudPrixTTCProduit.ValueChanged += new EventHandler(nudPrixTTCProduit_ValueChanged);
+        }
+
+        private void nudPrixTTCProduit_ValueChanged(object sender, EventArgs e)
+        {
+            nudPrixHTProduit.ValueChanged -= new EventHandler(nudPrixHTProduit_ValueChanged);
+            nudPrixHTProduit.Value = nudPrixTTCProduit.Value / (decimal)1.2;
+            nudPrixHTProduit.ValueChanged += new EventHandler(nudPrixHTProduit_ValueChanged);
+        }
+
+        private void nudPrixTTCFournisseur_ValueChanged(object sender, EventArgs e)
+        {
+            nudPrixHTFournisseur.ValueChanged -= new EventHandler(nudPrixHTFournisseur_ValueChanged);
+            nudPrixHTFournisseur.Value = nudPrixTTCFournisseur.Value / (decimal)1.2;
+            nudPrixHTFournisseur.ValueChanged += new EventHandler(nudPrixHTFournisseur_ValueChanged);
+        }
+
+        private void nudPrixHTFournisseur_ValueChanged(object sender, EventArgs e)
+        {
+            nudPrixTTCFournisseur.ValueChanged -= new EventHandler(nudPrixTTCFournisseur_ValueChanged);
+            nudPrixTTCFournisseur.Value = nudPrixHTFournisseur.Value * (decimal)1.2;
+            nudPrixTTCFournisseur.ValueChanged += new EventHandler(nudPrixTTCFournisseur_ValueChanged);
+        }
     }
     #endregion Fournisseur
 }
