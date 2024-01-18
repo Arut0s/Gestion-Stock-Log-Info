@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D92E36F2-4563-4090-A712-4AE082B0B01C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Gestion_Stock_Log_Info</RootNamespace>
+    <AssemblyName>Gestion Stock Log Info</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controlleur\Controle.cs" />
+    <Compile Include="Modele\Fournisseur.cs" />
+    <Compile Include="Modele\Produit.cs" />
+    <Compile Include="Outils\Sorting.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vue\frmAjoutProduit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmAjoutProduit.Designer.cs">
+      <DependentUpon>frmAjoutProduit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\frmCommande.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmCommande.Designer.cs">
+      <DependentUpon>frmCommande.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\frmInfoProduit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmInfoProduit.Designer.cs">
+      <DependentUpon>frmInfoProduit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\frmListeProduit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmListeProduit.Designer.cs">
+      <DependentUpon>frmListeProduit.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Vue\frmAjoutProduit.resx">
+      <DependentUpon>frmAjoutProduit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmCommande.resx">
+      <DependentUpon>frmCommande.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmInfoProduit.resx">
+      <DependentUpon>frmInfoProduit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmListeProduit.resx">
+      <DependentUpon>frmListeProduit.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
