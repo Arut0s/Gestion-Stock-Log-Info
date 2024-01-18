@@ -20,6 +20,11 @@ namespace Gestion_Stock_Log_Info.Vue
         {
             InitializeComponent();
             controle = Controle.getInstance();
+            this.lstFournisseurs.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.lstFournisseurs.MeasureItem += lst_MeasureItem;
+            this.lstFournisseurs.DrawItem += lst_DrawItem;
+
+
         }
 
         public void setTxtNom(string reference)
@@ -61,6 +66,9 @@ namespace Gestion_Stock_Log_Info.Vue
             produitActuel = controle.getLesProduits().Single(p => p.getNom() == txtNom.Text);
             DisableProduit();
             DisableFournisseur();
+            lblValeurTotalHT.Text = "Valeur Totale (HT) : " + nudQuantite.Value * nudPrixHTProduit.Value+"€";
+            lblValeurTotaleTTC.Text = "Valeur Totale (TTC) : " + nudQuantite.Value * nudPrixTTCProduit.Value + "€";
+            ActualiserListe();
         }
 
         private void DisableProduit()
@@ -153,6 +161,9 @@ namespace Gestion_Stock_Log_Info.Vue
                     if (controle.Modif(produitActuel, newProduit))
                     {
                         produitActuel = newProduit;
+                        lblValeurTotalHT.Text = "Valeur Totale (HT) : " + nudQuantite.Value * nudPrixHTProduit.Value+"€";
+                        lblValeurTotaleTTC.Text = "Valeur Totale (TTC) : " + nudQuantite.Value * nudPrixTTCProduit.Value + "€";
+                        ActualiserListe();
                     }
                     else
                     {
@@ -217,9 +228,30 @@ namespace Gestion_Stock_Log_Info.Vue
         private void ActualiserListe()
         {
             lstFournisseurs.Items.Clear();
+            List<decimal> lesMarges = new List<decimal>();
             foreach (Fournisseur fournisseur in produitActuel.getFournisseurs())
             {
-                lstFournisseurs.Items.Add(fournisseur.ToString());
+                decimal margeHT = produitActuel.getPrixVente() - fournisseur.getPrixAchat();
+                lstFournisseurs.Items.Add(fournisseur.ToString()+" Marge (HT) : "+margeHT+ "Marge (TTC) : "+margeHT*(decimal)1.2);
+                lesMarges.Add(margeHT);
+            }
+            if (!lesMarges.Any())
+            {
+                lblMargeHT.Text = "Marge (HT) : --,--€";
+                lblMargeTTC.Text = "Marge (TTC) : --,--€";
+            }
+            else
+            {
+                if(lesMarges.Max() == lesMarges.Min())
+                {
+                    lblMargeHT.Text = "Marge (HT) : "+lesMarges.Max()+"€";
+                    lblMargeTTC.Text = "Marge (TTC) : "+lesMarges.Max()*(decimal)1.2+"€";
+                }
+                else
+                {
+                    lblMargeHT.Text = "Marge (HT) : " + lesMarges.Min()+"~"+lesMarges.Max() + "€";
+                    lblMargeTTC.Text = "Marge (TTC) : " + lesMarges.Min()*(decimal)1.2 + "~" + lesMarges.Max()*(decimal)1.2 + "€";
+                }
             }
         }
 
@@ -250,7 +282,7 @@ namespace Gestion_Stock_Log_Info.Vue
         {
             if (lstFournisseurs.SelectedIndex != -1)
             {
-                Fournisseur fournisseur = produitActuel.getFournisseurs().Single(p => p.ToString() == lstFournisseurs.SelectedItem.ToString());
+                Fournisseur fournisseur = produitActuel.getFournisseurs().Single(p => lstFournisseurs.SelectedItem.ToString().Contains(p.ToString()));
                 if (btnModifierFournisseur.Text == "Valider")
                 {
                     if (txtReferenceFournisseur.Text != "" && txtNomFournisseur.Text != "")
@@ -348,6 +380,22 @@ namespace Gestion_Stock_Log_Info.Vue
             nudPrixTTCFournisseur.Value = nudPrixHTFournisseur.Value * (decimal)1.2;
             nudPrixTTCFournisseur.ValueChanged += new EventHandler(nudPrixTTCFournisseur_ValueChanged);
         }
-    }
+  
+
+
+
+        private void lst_MeasureItem(object sender, MeasureItemEventArgs e)
+            {
+                e.ItemHeight = (int)e.Graphics.MeasureString(lstFournisseurs.Items[e.Index].ToString(), lstFournisseurs.Font, lstFournisseurs.Width).Height;
+            }
+            private void lst_DrawItem(object sender, DrawItemEventArgs e)
+            {
+                e.DrawBackground();
+                e.DrawFocusRectangle();
+                e.Graphics.DrawString(lstFournisseurs.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds);
+            }
+}
     #endregion Fournisseur
+
+
 }

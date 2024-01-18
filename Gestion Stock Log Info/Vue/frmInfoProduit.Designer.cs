@@ -48,9 +48,9 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label3 = new System.Windows.Forms.Label();
             this.btnAjouterFournisseur = new System.Windows.Forms.Button();
             this.btnModifierFournisseur = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblMargeHT = new System.Windows.Forms.Label();
             this.btnSupprimerFournisseur = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblValeurTotalHT = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAnnulerFournisseur = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -64,6 +64,8 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label6 = new System.Windows.Forms.Label();
             this.txtReferenceFournisseur = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.lblValeurTotaleTTC = new System.Windows.Forms.Label();
+            this.lblMargeTTC = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixHTProduit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixTTCProduit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantite)).BeginInit();
@@ -87,9 +89,9 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.lstFournisseurs.FormattingEnabled = true;
             this.lstFournisseurs.ItemHeight = 16;
-            this.lstFournisseurs.Location = new System.Drawing.Point(191, 361);
+            this.lstFournisseurs.Location = new System.Drawing.Point(225, 361);
             this.lstFournisseurs.Name = "lstFournisseurs";
-            this.lstFournisseurs.Size = new System.Drawing.Size(664, 132);
+            this.lstFournisseurs.Size = new System.Drawing.Size(630, 132);
             this.lstFournisseurs.Sorted = true;
             this.lstFournisseurs.TabIndex = 1;
             // 
@@ -277,14 +279,14 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnModifierFournisseur.UseVisualStyleBackColor = true;
             this.btnModifierFournisseur.Click += new System.EventHandler(this.btnModifierFournisseur_Click);
             // 
-            // label7
+            // lblMargeHT
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 407);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 17);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "marge :";
+            this.lblMargeHT.AutoSize = true;
+            this.lblMargeHT.Location = new System.Drawing.Point(13, 407);
+            this.lblMargeHT.Name = "lblMargeHT";
+            this.lblMargeHT.Size = new System.Drawing.Size(56, 17);
+            this.lblMargeHT.TabIndex = 13;
+            this.lblMargeHT.Text = "Marge :";
             // 
             // btnSupprimerFournisseur
             // 
@@ -296,14 +298,14 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnSupprimerFournisseur.UseVisualStyleBackColor = true;
             this.btnSupprimerFournisseur.Click += new System.EventHandler(this.btnSupprimerFournisseur_Click);
             // 
-            // label9
+            // lblValeurTotalHT
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 361);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 17);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Valeur totale";
+            this.lblValeurTotalHT.AutoSize = true;
+            this.lblValeurTotalHT.Location = new System.Drawing.Point(12, 361);
+            this.lblValeurTotalHT.Name = "lblValeurTotalHT";
+            this.lblValeurTotalHT.Size = new System.Drawing.Size(138, 17);
+            this.lblValeurTotalHT.TabIndex = 15;
+            this.lblValeurTotalHT.Text = "Valeur Totale (HT) : ";
             // 
             // groupBox1
             // 
@@ -435,21 +437,41 @@ namespace Gestion_Stock_Log_Info.Vue
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(188, 330);
+            this.label14.Location = new System.Drawing.Point(222, 341);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(155, 17);
             this.label14.TabIndex = 17;
             this.label14.Text = "Liste des fournisseurs :";
+            // 
+            // lblValeurTotaleTTC
+            // 
+            this.lblValeurTotaleTTC.AutoSize = true;
+            this.lblValeurTotaleTTC.Location = new System.Drawing.Point(13, 390);
+            this.lblValeurTotaleTTC.Name = "lblValeurTotaleTTC";
+            this.lblValeurTotaleTTC.Size = new System.Drawing.Size(146, 17);
+            this.lblValeurTotaleTTC.TabIndex = 18;
+            this.lblValeurTotaleTTC.Text = "Valeur Totale (TTC) : ";
+            // 
+            // lblMargeTTC
+            // 
+            this.lblMargeTTC.AutoSize = true;
+            this.lblMargeTTC.Location = new System.Drawing.Point(12, 438);
+            this.lblMargeTTC.Name = "lblMargeTTC";
+            this.lblMargeTTC.Size = new System.Drawing.Size(56, 17);
+            this.lblMargeTTC.TabIndex = 19;
+            this.lblMargeTTC.Text = "Marge :";
             // 
             // frmInfoProduit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 509);
+            this.Controls.Add(this.lblMargeTTC);
+            this.Controls.Add(this.lblValeurTotaleTTC);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblValeurTotalHT);
+            this.Controls.Add(this.lblMargeHT);
             this.Controls.Add(this.grpProduit);
             this.Controls.Add(this.lstFournisseurs);
             this.Name = "frmInfoProduit";
@@ -484,14 +506,14 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAjouterFournisseur;
         private System.Windows.Forms.Button btnModifierFournisseur;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblMargeHT;
         private System.Windows.Forms.Button btnSupprimerFournisseur;
         private System.Windows.Forms.Button btnAnnulerProduit;
         private System.Windows.Forms.DateTimePicker dtpDerniereVente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmbCategorie;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblValeurTotalHT;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtReferenceFournisseur;
@@ -506,5 +528,7 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Button btnSupprimerProduit;
         private System.Windows.Forms.Button btnAnnulerFournisseur;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblValeurTotaleTTC;
+        private System.Windows.Forms.Label lblMargeTTC;
     }
 }
