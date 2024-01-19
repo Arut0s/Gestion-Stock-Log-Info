@@ -19,6 +19,7 @@ namespace Gestion_Stock_Log_Info.Vue
         private List<Produit> Commande = new List<Produit>();
         private List<int> lesQuantites = new List<int>();
         private List<DateTime> lesDates = new List<DateTime>();
+        private List<Fournisseur> lesFournisseursRestock = new List<Fournisseur>();
         public frmListeProduit()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace Gestion_Stock_Log_Info.Vue
             lstProduit.Items.Clear();
             List<Produit> lesProduits = controle.getLesProduits();
 
-            for(int k =0; k<lesProduits.Count;k++)
+            for (int k = 0; k < lesProduits.Count; k++)
             {
                 if (FiltreRecherche(k))
                 {
@@ -53,7 +54,7 @@ namespace Gestion_Stock_Log_Info.Vue
                         item.SubItems.Add(lesProduits[k].getQuantite().ToString());
                     }
                     item.SubItems.Add(lesProduits[k].getPrixVente().ToString() + "€");
-                    item.SubItems.Add(Math.Round((lesProduits[k].getPrixVente() * (decimal)1.2),2).ToString() + "€");
+                    item.SubItems.Add(Math.Round((lesProduits[k].getPrixVente() * (decimal)1.2), 2).ToString() + "€");
                     item.SubItems.Add(lesProduits[k].getDateDerniereVente().ToShortDateString());
                     if (lesProduits[k].isChecked())
                     {
@@ -179,7 +180,7 @@ namespace Gestion_Stock_Log_Info.Vue
 
         private void txtRecherche_TextChanged(object sender, EventArgs e)
         {
-            if(txtRecherche.Text != "")
+            if (txtRecherche.Text != "")
             {
                 btnClear.Enabled = true;
             }
@@ -234,6 +235,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 btnAjouter.Enabled = true;
                 btnInfo.Enabled = true;
                 btnSupprimer.Enabled = true;
+                btnRestock.Enabled = true;
                 btnCommande.Text = "Commande";
                 lstProduit.ItemChecked -= new ItemCheckedEventHandler(Item_Checked_Commande);
                 if (Commande.Any())
@@ -242,10 +244,10 @@ namespace Gestion_Stock_Log_Info.Vue
                     decimal totalHT = 0;
                     for (int k = 0; k < Commande.Count; k++)
                     {
-                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + Commande[k].getPrixVente() * lesQuantites[k] + "€ (HT) et "+ Math.Round(Commande[k].getPrixVente()*(decimal)1.2*lesQuantites[k],2)+"€ (TTC)");
+                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + Commande[k].getPrixVente() * lesQuantites[k] + "€ (HT) et " + Math.Round(Commande[k].getPrixVente() * (decimal)1.2 * lesQuantites[k], 2) + "€ (TTC)");
                         totalHT += Commande[k].getPrixVente() * lesQuantites[k];
                     }
-                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et "+Math.Round(totalHT*(decimal)1.2,2)+"€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et " + Math.Round(totalHT * (decimal)1.2, 2) + "€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         for (int k = 0; k < Commande.Count; k++)
                         {
@@ -265,6 +267,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 btnCommande.Text = "Valider";
                 btnAjouter.Enabled = false;
                 btnInfo.Enabled = false;
+                btnRestock.Enabled = false;
                 btnSupprimer.Enabled = false;
                 btnDecoche_Click(null, null);
                 lstProduit.ItemChecked += new ItemCheckedEventHandler(Item_Checked_Commande);
@@ -321,7 +324,48 @@ namespace Gestion_Stock_Log_Info.Vue
                     controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text).setChecked(false);
                     ActualiserListe();
                 }
-            }   
+            }
+        }
+
+        public void Item_Checked_Restock(object sender, ItemCheckedEventArgs e)
+        {
+            if (!e.Item.Focused)
+            {
+                return;
+            }
+            e.Item.Focused = true;
+            if (e.Item.Checked == true && !controle.DejaDansLaListe(e.Item.SubItems[0].Text, Commande))
+            {
+                Produit produit = controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text);
+                if (!produit.getFournisseurs().Any())
+                {
+                    MessageBox.Show("Ce produit ne possède pas de fournisseur", "Opération Impossible");
+                    controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text).setChecked(false);
+                    ActualiserListe();
+                }
+                else
+                {
+                    controle.AfficheFrm(produit, "restock");
+                    Commande.Add(controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text));
+                    lesQuantites.Add(controle.getCommandeQuantite());
+                    lesDates.Add(controle.GetCommandeDate());
+                    lesFournisseursRestock.Add(controle.getFournisseurRestock());
+                    controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text).setChecked(true);
+                }
+            }
+            else if (e.Item.Checked == false)
+            {
+                if (controle.DejaDansLaListe(e.Item.SubItems[0].Text, Commande))
+                {
+                    lesQuantites.RemoveAt(Commande.IndexOf(controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text)));
+                    lesDates.RemoveAt(Commande.IndexOf(controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text)));
+                    lesFournisseursRestock.RemoveAt(Commande.IndexOf(controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text)));
+                    Commande.Remove(controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text));
+                    controle.getLesProduits().Single(p => p.getNom() == e.Item.SubItems[0].Text).setChecked(false);
+                    ActualiserListe();
+                }
+            }
+
         }
 
         private void btnDecoche_Click(object sender, EventArgs e)
@@ -332,5 +376,55 @@ namespace Gestion_Stock_Log_Info.Vue
             }
             ActualiserListe();
         }
+
+        private void btnRestock_Click(object sender, EventArgs e)
+        {
+            if (btnSupprimer.Enabled == false)
+            {
+                btnDecoche_Click(null, null);
+                btnAjouter.Enabled = true;
+                btnInfo.Enabled = true;
+                btnSupprimer.Enabled = true;
+                btnCommande.Enabled = true;
+                btnRestock.Text = "Restock";
+                lstProduit.ItemChecked -= new ItemCheckedEventHandler(Item_Checked_Restock);
+                if (Commande.Any())
+                {
+                    List<string> info = new List<string>();
+                    decimal totalHT = 0;
+                    for (int k = 0; k < Commande.Count; k++)
+                    {
+                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + lesFournisseursRestock[k].getPrixAchat() * lesQuantites[k] + "€ (HT) et " + Math.Round(lesFournisseursRestock[k].getPrixAchat() * (decimal)1.2 * lesQuantites[k], 2) + "€ (TTC)");
+                        totalHT += lesFournisseursRestock[k].getPrixAchat() * lesQuantites[k];
+                    }
+                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et " + Math.Round(totalHT * (decimal)1.2, 2) + "€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        for (int k = 0; k < Commande.Count; k++)
+                        {
+                            Produit produit = controle.getLesProduits().Single(p => p.getNom() == Commande[k].getNom());
+                            produit.setQuantite(produit.getQuantite() + lesQuantites[k]);
+                            produit.getFournisseurs().Single(f => f.getReference() == lesFournisseursRestock[k].getReference()).setDateDernierAchat(controle.GetCommandeDate());
+                        }
+                    }
+                    ActualiserListe();
+                }
+
+            }
+            else
+            {
+                Commande.Clear();
+                lesQuantites.Clear();
+                lesFournisseursRestock.Clear();
+                btnRestock.Text = "Valider";
+                btnAjouter.Enabled = false;
+                btnInfo.Enabled = false;
+                btnCommande.Enabled = false;
+                btnSupprimer.Enabled = false;
+                btnDecoche_Click(null, null);
+                lstProduit.ItemChecked += new ItemCheckedEventHandler(Item_Checked_Restock);
+            }
+        }
+
     }
 }
+

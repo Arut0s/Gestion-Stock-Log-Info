@@ -15,6 +15,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
         private List<Produit> lesProduits = new List<Produit>();
         private string ordre = "";
         private int quantite;
+        private Fournisseur fournisseurRestock;
         private DateTime date = DateTime.Today;
 
         public Controle()
@@ -50,6 +51,15 @@ namespace Gestion_Stock_Log_Info.Controlleur
             this.date = date;
         }
 
+        public void setFournisseurRestock(Fournisseur fournisseur)
+        {
+            this.fournisseurRestock = fournisseur;
+        }
+
+        public Fournisseur getFournisseurRestock()
+        {
+            return this.fournisseurRestock;
+        }
         public void Ajout(Produit produit)
         {
             if (!DejaDansLaListe(produit.getNom(), lesProduits))
@@ -146,7 +156,15 @@ namespace Gestion_Stock_Log_Info.Controlleur
                     break;
                 case "commande":
                     frmCommande frmCommande = new frmCommande();
+                    frmCommande.Text = "Commande";
                     frmCommande.ShowDialog(); 
+                    break;
+                case "restock":
+                    frmCommande frmRestock = new frmCommande();
+                    frmRestock.Text = "Restock";
+                    MessageBox.Show(produit.getFournisseurs()[0].ToString());
+                    frmRestock.setLesFournisseurs(produit.getFournisseurs());
+                    frmRestock.ShowDialog();
                     break;
                     
             }

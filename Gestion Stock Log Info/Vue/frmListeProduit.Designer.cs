@@ -48,6 +48,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnClear = new System.Windows.Forms.Button();
             this.btnCommande = new System.Windows.Forms.Button();
             this.btnDecoche = new System.Windows.Forms.Button();
+            this.btnRestock = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstProduit
@@ -79,31 +80,32 @@ namespace Gestion_Stock_Log_Info.Vue
             // columnHeader6
             // 
             this.columnHeader6.Text = "Nom";
-            this.columnHeader6.Width = 200;
+            this.columnHeader6.Width = 31;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Catégorie";
-            this.columnHeader2.Width = 120;
+            this.columnHeader2.Width = 71;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Quantité";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 61;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Prix (HT)";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 64;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Prix (TTC)";
-            this.columnHeader5.Width = 100;
+            this.columnHeader5.Width = 72;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Date dernière vente";
+            this.columnHeader1.Width = 846;
             // 
             // label1
             // 
@@ -179,7 +181,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.button2.AutoSize = true;
             this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.Location = new System.Drawing.Point(664, 9);
+            this.button2.Location = new System.Drawing.Point(739, 9);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(80, 27);
             this.button2.TabIndex = 6;
@@ -191,7 +193,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.button3.AutoSize = true;
             this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button3.Location = new System.Drawing.Point(664, 42);
+            this.button3.Location = new System.Drawing.Point(739, 42);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(135, 27);
             this.button3.TabIndex = 7;
@@ -253,6 +255,16 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnDecoche.UseVisualStyleBackColor = true;
             this.btnDecoche.Click += new System.EventHandler(this.btnDecoche_Click);
             // 
+            // btnRestock
+            // 
+            this.btnRestock.Location = new System.Drawing.Point(611, 42);
+            this.btnRestock.Name = "btnRestock";
+            this.btnRestock.Size = new System.Drawing.Size(75, 23);
+            this.btnRestock.TabIndex = 13;
+            this.btnRestock.Text = "Restock";
+            this.btnRestock.UseVisualStyleBackColor = true;
+            this.btnRestock.Click += new System.EventHandler(this.btnRestock_Click);
+            // 
             // frmListeProduit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -260,6 +272,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1183, 437);
+            this.Controls.Add(this.btnRestock);
             this.Controls.Add(this.btnDecoche);
             this.Controls.Add(this.btnCommande);
             this.Controls.Add(this.btnClear);
@@ -302,5 +315,6 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnCommande;
         private System.Windows.Forms.Button btnDecoche;
+        private System.Windows.Forms.Button btnRestock;
     }
 }

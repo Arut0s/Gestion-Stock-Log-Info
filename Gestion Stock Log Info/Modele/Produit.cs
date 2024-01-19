@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gestion_Stock_Log_Info.Modele
 {
-    class Produit
+    public class Produit
     {
         private string nom;
         private string categorie;

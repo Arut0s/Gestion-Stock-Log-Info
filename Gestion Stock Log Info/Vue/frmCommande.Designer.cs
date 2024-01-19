@@ -35,6 +35,8 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnAnnuler = new System.Windows.Forms.Button();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmbFournisseur = new System.Windows.Forms.ComboBox();
+            this.lblFournisseur = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantite)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnAjouter
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(10, 114);
+            this.btnAjouter.Location = new System.Drawing.Point(10, 191);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(72, 39);
             this.btnAjouter.TabIndex = 2;
@@ -71,7 +73,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(144, 114);
+            this.btnAnnuler.Location = new System.Drawing.Point(144, 191);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(72, 34);
             this.btnAnnuler.TabIndex = 3;
@@ -95,11 +97,30 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label2.TabIndex = 5;
             this.label2.Text = "Date derniere vente :";
             // 
+            // cmbFournisseur
+            // 
+            this.cmbFournisseur.FormattingEnabled = true;
+            this.cmbFournisseur.Location = new System.Drawing.Point(10, 150);
+            this.cmbFournisseur.Name = "cmbFournisseur";
+            this.cmbFournisseur.Size = new System.Drawing.Size(184, 24);
+            this.cmbFournisseur.TabIndex = 6;
+            // 
+            // lblFournisseur
+            // 
+            this.lblFournisseur.AutoSize = true;
+            this.lblFournisseur.Location = new System.Drawing.Point(12, 121);
+            this.lblFournisseur.Name = "lblFournisseur";
+            this.lblFournisseur.Size = new System.Drawing.Size(83, 17);
+            this.lblFournisseur.TabIndex = 7;
+            this.lblFournisseur.Text = "Fournisseur";
+            // 
             // frmCommande
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 172);
+            this.ClientSize = new System.Drawing.Size(282, 242);
+            this.Controls.Add(this.lblFournisseur);
+            this.Controls.Add(this.cmbFournisseur);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnAnnuler);
@@ -108,6 +129,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.label1);
             this.Name = "frmCommande";
             this.Text = "frmCommande";
+            this.Load += new System.EventHandler(this.frmCommande_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantite)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,5 +144,7 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbFournisseur;
+        private System.Windows.Forms.Label lblFournisseur;
     }
 }

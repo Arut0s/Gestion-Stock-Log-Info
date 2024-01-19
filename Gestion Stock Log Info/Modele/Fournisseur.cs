@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gestion_Stock_Log_Info.Modele
 {
-    class Fournisseur
+    public class Fournisseur
     {
         private string nom;
         private decimal prixachat;
@@ -44,6 +44,11 @@ namespace Gestion_Stock_Log_Info.Modele
         public string getReference()
         {
             return this.reference;
+        }
+
+        public void setDateDernierAchat(DateTime date)
+        {
+            this.datedernierachat = date;
         }
     }
 }
