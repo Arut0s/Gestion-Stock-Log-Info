@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gestion_Stock_Log_Info.Modele
 {
+    [SerializableAttribute]
     public class Fournisseur
     {
         private string nom;

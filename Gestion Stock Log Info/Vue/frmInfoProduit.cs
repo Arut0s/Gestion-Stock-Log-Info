@@ -219,6 +219,7 @@ namespace Gestion_Stock_Log_Info.Vue
                         txtNomFournisseur.Text = "";
                         nudPrixHTFournisseur.Value = 0;
                         ActualiserListe();
+                        controle.Serialisation();
                     }
                 }
                 else
@@ -294,7 +295,7 @@ namespace Gestion_Stock_Log_Info.Vue
             }
             else
             {
-                if(fournisseur.getNom() == newfournisseur.getNom())
+                if (fournisseur.getNom() == newfournisseur.getNom())
                 {
                     k++;
                 }
@@ -306,7 +307,7 @@ namespace Gestion_Stock_Log_Info.Vue
             }
             else
             {
-                if(fournisseur.getReference() == newfournisseur.getReference())
+                if (fournisseur.getReference() == newfournisseur.getReference())
                 {
                     k++;
                 }
@@ -319,23 +320,24 @@ namespace Gestion_Stock_Log_Info.Vue
             if (lstFournisseurs.SelectedIndex != -1)
             {
                 Fournisseur fournisseur = produitActuel.getFournisseurs().Single(p => lstFournisseurs.SelectedItem.ToString().Contains(p.ToString()));
-                if(btnModifierFournisseur.Text == "Valider")
+                if (btnModifierFournisseur.Text == "Valider")
                 {
                     if (txtReferenceFournisseur.Text != "" && txtNomFournisseur.Text != "")
                     {
                         Fournisseur newfournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Math.Round(nudPrixHTFournisseur.Value, 2), dtpDateDernierAchat.Value);
-                        if(AllowModifFournisseur(fournisseur, newfournisseur))
+                        if (AllowModifFournisseur(fournisseur, newfournisseur))
                         {
-                                DisableFournisseur();
-                                produitActuel.getFournisseurs().Remove(fournisseur);
-                                produitActuel.getFournisseurs().Add(newfournisseur);
-                                btnModifierFournisseur.Text = "Modifier";
-                                btnAjouterFournisseur.Enabled = true;
-                                btnSupprimerFournisseur.Enabled = true;
-                                txtReferenceFournisseur.Text = "";
-                                txtNomFournisseur.Text = "";
-                                nudPrixHTFournisseur.Value = 0;
-                                ActualiserListe();
+                            DisableFournisseur();
+                            produitActuel.getFournisseurs().Remove(fournisseur);
+                            produitActuel.getFournisseurs().Add(newfournisseur);
+                            btnModifierFournisseur.Text = "Modifier";
+                            btnAjouterFournisseur.Enabled = true;
+                            btnSupprimerFournisseur.Enabled = true;
+                            txtReferenceFournisseur.Text = "";
+                            txtNomFournisseur.Text = "";
+                            nudPrixHTFournisseur.Value = 0;
+                            ActualiserListe();
+                            controle.Serialisation();
                         }
                         else
                         {
@@ -369,12 +371,13 @@ namespace Gestion_Stock_Log_Info.Vue
         {
             if (lstFournisseurs.SelectedIndex != -1)
             {
-                Fournisseur fournisseur = produitActuel.getFournisseurs().Single(p => p.ToString() == lstFournisseurs.SelectedItem.ToString());
+                Fournisseur fournisseur = produitActuel.getFournisseurs().Single(p => lstFournisseurs.SelectedItem.ToString().Contains(p.ToString()));
                 if (MessageBox.Show(fournisseur.ToString(), "Confirmer la suppression", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     produitActuel.getFournisseurs().Remove(fournisseur);
                     MessageBox.Show("Fournisseur supprimé avec succès", "Succès");
                     ActualiserListe();
+                    controle.Serialisation();
                 }
             }
         }

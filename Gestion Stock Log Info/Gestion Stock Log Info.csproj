@@ -50,6 +50,7 @@
     <Compile Include="Controlleur\Controle.cs" />
     <Compile Include="Modele\Fournisseur.cs" />
     <Compile Include="Modele\Produit.cs" />
+    <Compile Include="Outils\Serialise.cs" />
     <Compile Include="Outils\Sorting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

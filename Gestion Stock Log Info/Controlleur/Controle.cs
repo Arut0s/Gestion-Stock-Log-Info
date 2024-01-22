@@ -1,5 +1,6 @@
 ﻿using Gestion_Stock_Log_Info.Modele;
 using Gestion_Stock_Log_Info.Vue;
+using GestionStockLogInfo.Outils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
         private int quantite;
         private Fournisseur fournisseurRestock;
         private DateTime date = DateTime.Today;
+        private string fichier = "ListeProduit.txt";
 
         public Controle()
         {
@@ -65,11 +67,13 @@ namespace Gestion_Stock_Log_Info.Controlleur
             if (!DejaDansLaListe(produit.getNom(), lesProduits))
             {
                 lesProduits.Add(produit);
+                Serialise.Sauve(fichier, lesProduits);
             }
             else
             {
                 MessageBox.Show("Le produit existe déjà "+lesProduits.Single(p => p.getNom() == produit.getNom())+ " (pour le modifier, ouvrez d'abord ses informations)", "Erreur");
             }
+;
         }
 
         public bool Modif(Produit produit, Produit newProduit)
@@ -78,6 +82,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
             {
                 lesProduits.Remove(lesProduits.Single(p => p.getNom() == produit.getNom()));
                 lesProduits.Add(newProduit);
+                Serialise.Sauve(fichier, lesProduits);
                 return true;
             }
             else
@@ -89,6 +94,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
         public void supprProduit(Produit produit)
         {
             lesProduits.Remove(produit);
+            Serialise.Sauve(fichier, lesProduits);
         }
         public void supprProduit(List<Produit> supprList)
         {
@@ -105,6 +111,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
                     for (int k = 0; k < supprList.Count; k++)
                     {
                         lesProduits.Remove(supprList[k]);
+                        Serialise.Sauve(fichier, lesProduits);
                     }
                 }
             }
@@ -170,7 +177,16 @@ namespace Gestion_Stock_Log_Info.Controlleur
            
         }       
 
+        public void Serialisation()
+        {
+            Serialise.Sauve(fichier, this.lesProduits);
+        }
 
+        
+        public void setLesProduits(List<Produit> lesProduits)
+        {
+            this.lesProduits = lesProduits;
+        }
 
         public bool DejaDansLaListe(string nom, List<Produit> liste)
         {

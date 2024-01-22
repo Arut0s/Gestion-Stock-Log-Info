@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gestion_Stock_Log_Info.Modele
 {
+    [SerializableAttribute]
     public class Produit
     {
         private string nom;
@@ -16,6 +17,7 @@ namespace Gestion_Stock_Log_Info.Modele
         private bool ischecked = false;
         private DateTime datedernierevente;
 
+        
         public Produit(string nom, string categorie, List<Fournisseur> fournisseurs, decimal prixvente, int quantite, DateTime datedernierevente)
         {
             this.nom = nom;

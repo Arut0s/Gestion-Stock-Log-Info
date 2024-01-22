@@ -1,6 +1,7 @@
 ﻿using Gestion_Stock_Log_Info.Controlleur;
 using Gestion_Stock_Log_Info.Modele;
 using GestionStockLogInfo.outils;
+using GestionStockLogInfo.Outils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace Gestion_Stock_Log_Info.Vue
         private List<int> lesQuantites = new List<int>();
         private List<DateTime> lesDates = new List<DateTime>();
         private List<Fournisseur> lesFournisseursRestock = new List<Fournisseur>();
+        private string fichier = "ListeProduit.txt";
         public frmListeProduit()
         {
             InitializeComponent();
@@ -37,7 +39,6 @@ namespace Gestion_Stock_Log_Info.Vue
         {
             lstProduit.Items.Clear();
             List<Produit> lesProduits = controle.getLesProduits();
-
             for (int k = 0; k < lesProduits.Count; k++)
             {
                 if (FiltreRecherche(k))
@@ -104,6 +105,12 @@ namespace Gestion_Stock_Log_Info.Vue
         }
         private void frmListeProduit_Load(object sender, EventArgs e)
         {
+            List<Produit> recup = new List<Produit>();
+            recup = (List<Produit>)Serialise.Recup(fichier);
+            if (recup != null)
+            {
+                controle.setLesProduits(recup);
+            }
             ActualiserListe();
         }
 
