@@ -53,8 +53,8 @@ namespace Gestion_Stock_Log_Info.Vue
                     {
                         item.SubItems.Add(lesProduits[k].getQuantite().ToString());
                     }
-                    item.SubItems.Add(lesProduits[k].getPrixVente().ToString() + "€");
-                    item.SubItems.Add(Math.Round((lesProduits[k].getPrixVente() * (decimal)1.2), 2).ToString() + "€");
+                    item.SubItems.Add(lesProduits[k].getPrixVente().ToString("N2") + "€");
+                    item.SubItems.Add(Math.Round((lesProduits[k].getPrixVente() * (decimal)1.2), 2).ToString("N2") + "€");
                     item.SubItems.Add(lesProduits[k].getDateDerniereVente().ToShortDateString());
                     if (lesProduits[k].isChecked())
                     {
@@ -244,10 +244,10 @@ namespace Gestion_Stock_Log_Info.Vue
                     decimal totalHT = 0;
                     for (int k = 0; k < Commande.Count; k++)
                     {
-                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + Commande[k].getPrixVente() * lesQuantites[k] + "€ (HT) et " + Math.Round(Commande[k].getPrixVente() * (decimal)1.2 * lesQuantites[k], 2) + "€ (TTC)");
+                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + (Commande[k].getPrixVente() * lesQuantites[k]).ToString("N2") + "€ (HT) et " + Math.Round(Commande[k].getPrixVente() * (decimal)1.2 * lesQuantites[k], 2).ToString("N2") + "€ (TTC)");
                         totalHT += Commande[k].getPrixVente() * lesQuantites[k];
                     }
-                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et " + Math.Round(totalHT * (decimal)1.2, 2) + "€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT.ToString("N2") + "€ (HT) et " + Math.Round(totalHT * (decimal)1.2, 2).ToString("N2") + "€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         for (int k = 0; k < Commande.Count; k++)
                         {
@@ -264,6 +264,8 @@ namespace Gestion_Stock_Log_Info.Vue
             {
                 Commande.Clear();
                 lesQuantites.Clear();
+                lesDates.Clear();
+                controle.setCommandeDate(DateTime.Today);
                 btnCommande.Text = "Valider";
                 btnAjouter.Enabled = false;
                 btnInfo.Enabled = false;
@@ -394,10 +396,10 @@ namespace Gestion_Stock_Log_Info.Vue
                     decimal totalHT = 0;
                     for (int k = 0; k < Commande.Count; k++)
                     {
-                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + lesFournisseursRestock[k].getPrixAchat() * lesQuantites[k] + "€ (HT) et " + Math.Round(lesFournisseursRestock[k].getPrixAchat() * (decimal)1.2 * lesQuantites[k], 2) + "€ (TTC)");
+                        info.Add(Commande[k].getNom() + " x " + lesQuantites[k].ToString() + " = " + (lesFournisseursRestock[k].getPrixAchat() * lesQuantites[k]).ToString("N2") + "€ (HT) et " + Math.Round(lesFournisseursRestock[k].getPrixAchat() * (decimal)1.2 * lesQuantites[k], 2).ToString("N2") + "€ (TTC)");
                         totalHT += lesFournisseursRestock[k].getPrixAchat() * lesQuantites[k];
                     }
-                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT + "€ (HT) et " + Math.Round(totalHT * (decimal)1.2, 2) + "€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show(string.Join("\r", info) + "\r" + "Total : " + totalHT.ToString("N2") + "€ (HT) et " + Math.Round(totalHT * (decimal)1.2, 2).ToString("N2") + "€ (TTC)", "Valider la commande", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         for (int k = 0; k < Commande.Count; k++)
                         {
@@ -415,6 +417,8 @@ namespace Gestion_Stock_Log_Info.Vue
                 Commande.Clear();
                 lesQuantites.Clear();
                 lesFournisseursRestock.Clear();
+                lesDates.Clear();
+                controle.setCommandeDate(DateTime.Today);
                 btnRestock.Text = "Valider";
                 btnAjouter.Enabled = false;
                 btnInfo.Enabled = false;

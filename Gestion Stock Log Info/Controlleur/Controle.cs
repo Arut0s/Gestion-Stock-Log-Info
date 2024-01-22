@@ -162,7 +162,6 @@ namespace Gestion_Stock_Log_Info.Controlleur
                 case "restock":
                     frmCommande frmRestock = new frmCommande();
                     frmRestock.Text = "Restock";
-                    MessageBox.Show(produit.getFournisseurs()[0].ToString());
                     frmRestock.setLesFournisseurs(produit.getFournisseurs());
                     frmRestock.ShowDialog();
                     break;
