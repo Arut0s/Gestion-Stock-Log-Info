@@ -28,78 +28,104 @@ namespace Gestion_Stock_Log_Info.Modele
             this.datedernierevente = datedernierevente;
         }
 
-  
+        /// <summary>
+        /// Getter sur le nom d'un produit
+        /// </summary>
+        /// <returns>string nom</returns>
         public string getNom()
         {
             return this.nom;
         }
 
+        /// <summary>
+        /// Getter sur la catégorie d'un produit
+        /// </summary>
+        /// <returns>string categorie</returns>
         public string getCategorie()
         {
             return this.categorie;
         }
 
+        /// <summary>
+        /// Getter sur la quantité disponible d'un produit
+        /// </summary>
+        /// <returns>int quantite</returns>
         public int getQuantite()
         {
             return this.quantite;
         }
-        public bool isChecked()
-        {
-            return this.ischecked;
-        }
 
-        public decimal getPrixVente()
-        {
-            return this.prixvente;
-        }
-
+        /// <summary>
+        /// Getter surla liste des fournisseurs d'un produit
+        /// </summary>
+        /// <returns>List fournisseur</returns>
         public List<Fournisseur> getFournisseurs()
         {
             return fournisseurs;
         }
 
+        /// <summary>
+        /// Getter sur le prix de vente d'un produit
+        /// </summary>
+        /// <returns></returns>
+        public decimal getPrixVente()
+        {
+            return this.prixvente;
+        }
+
+        /// <summary>
+        /// Getter sur la date de la dernière vente d'un produit
+        /// </summary>
+        /// <returns>Date date dernière vente</returns>
         public DateTime getDateDerniereVente()
         {
             return this.datedernierevente;
         }
 
-        public void setDateDerniereVente(DateTime datedernierevente)
+        /// <summary>
+        /// Permet d'obtenir l'état de la case "check" d'un produit
+        /// </summary>
+        /// <returns>bool ischecked</returns>
+        public bool isChecked()
         {
-            this.datedernierevente = datedernierevente;
+            return this.ischecked;
         }
 
-        public void setNom(string nom)
-        {
-            this.nom = nom;
-        }
-
-        public void setCategorie(string categorie)
-        {
-            this.categorie = categorie;
-        }
-
-        public void setFournisseurs(List<Fournisseur> fournisseurs)
-        {
-            this.fournisseurs = fournisseurs;
-        }
+        /// <summary>
+        /// Setter sur la quantite d'un produit
+        /// </summary>
+        /// <param name="quantite"></param>
 
         public void setQuantite(int quantite)
         {
             this.quantite = quantite;
         }
 
-        public void setPrixVente(decimal prixvente)
+        /// <summary>
+        /// Setter sur la date de dernière vente d'un produit
+        /// </summary>
+        /// <param name="datedernierevente"></param>
+        public void setDateDerniereVente(DateTime datedernierevente)
         {
-            this.prixvente = prixvente;
-        }
-        public override string ToString()
-        {
-            return   "Nom : " + nom + ", Catégorie : " + categorie;
+            this.datedernierevente = datedernierevente;
         }
 
+        /// <summary>
+        /// Permet de changer l'état de la case "check" d'un produit
+        /// </summary>
+        /// <param name="ischecked"></param>
         public void setChecked(bool ischecked)
         {
             this.ischecked = ischecked;
+        }
+
+        /// <summary>
+        /// Permet d'obtenir une chaine string contenant les informations du produit
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return "Nom : " + nom + ", Catégorie : " + categorie;
         }
     }
 }

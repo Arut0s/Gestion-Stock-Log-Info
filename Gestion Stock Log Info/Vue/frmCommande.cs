@@ -14,8 +14,12 @@ namespace Gestion_Stock_Log_Info.Vue
 {
     public partial class frmCommande : Form
     {
+        #region déclarations 
+
         private Controle controle;
         public List<Fournisseur> lesFournisseurs;
+
+        #endregion
         public frmCommande()
         {
             InitializeComponent();
@@ -23,6 +27,13 @@ namespace Gestion_Stock_Log_Info.Vue
             
         }
 
+        #region evenements boutons
+
+        /// <summary>
+        /// Bouton permettant de confirmer les informations du form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             controle.setCommandeQuantite((int)nudQuantite.Value);
@@ -34,21 +45,48 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Close();
         }
 
+        /// <summary>
+        /// Bouton permettant d'annuler le formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        public void setLesFournisseurs(List<Fournisseur> fournisseurs)
-        {
-            this.lesFournisseurs = fournisseurs;
-        }
+        #endregion
 
+        #region getters et setters
+
+        /// <summary>
+        /// Getter sur le combobox des fournisseurs
+        /// </summary>
+        /// <returns></returns>
         public ComboBox getCmbFournisseur()
         {
             return cmbFournisseur;
         }
 
+        /// <summary>
+        /// Setter sur la liste des fournisseurs
+        /// </summary>
+        /// <param name="fournisseurs"></param>
+        public void setLesFournisseurs(List<Fournisseur> fournisseurs)
+        {
+            this.lesFournisseurs = fournisseurs;
+        }
+
+        
+        #endregion
+
+        #region autres evenements
+
+        /// <summary>
+        /// Evenement se produisant au chargement du formulaire permettant d'initialisé ce dernier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmCommande_Load(object sender, EventArgs e)
         {
             nudQuantite.Value = 1;
@@ -67,5 +105,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 cmbFournisseur.SelectedIndex = 0;
             }
         }
+
+        #endregion
     }
 }

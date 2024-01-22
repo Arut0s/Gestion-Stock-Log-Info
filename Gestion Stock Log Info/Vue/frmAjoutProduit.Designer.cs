@@ -384,7 +384,6 @@ namespace Gestion_Stock_Log_Info.Vue
             this.MaximizeBox = false;
             this.Name = "frmAjoutProduit";
             this.Text = "Ajout d\'un produit";
-            this.Load += new System.EventHandler(this.frmAjoutProduit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixHTProduit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixTTCProduit)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -10,8 +10,13 @@ using System.Windows.Forms;
 
 namespace Gestion_Stock_Log_Info.Controlleur
 {
+    /// <summary>
+    /// Classe controlleur permet aux forms de communiquer entre-eux
+    /// </summary>
     class Controle
     {
+        #region déclarations
+
         private static Controle instance = null;
         private List<Produit> lesProduits = new List<Produit>();
         private string ordre = "";
@@ -20,10 +25,14 @@ namespace Gestion_Stock_Log_Info.Controlleur
         private DateTime date = DateTime.Today;
         private string fichier = "ListeProduit.txt";
 
-        public Controle()
-        {
-            
-        }
+        #endregion
+
+        #region fonctions et méthodes
+
+        /// <summary>
+        /// Permet d'obtenir l'instance du controlleur
+        /// </summary>
+        /// <returns>Controle instance</returns>
         public static Controle getInstance()
         {
             if (instance == null)
@@ -33,35 +42,10 @@ namespace Gestion_Stock_Log_Info.Controlleur
             return instance;
         }
 
-        public int getCommandeQuantite()
-        {
-            return this.quantite;
-        }
-
-        public void setCommandeQuantite(int quantite)
-        {
-            this.quantite = quantite;
-        }
-
-        public DateTime GetCommandeDate()
-        {
-            return this.date;
-        }
-
-        public void setCommandeDate(DateTime date)
-        {
-            this.date = date;
-        }
-
-        public void setFournisseurRestock(Fournisseur fournisseur)
-        {
-            this.fournisseurRestock = fournisseur;
-        }
-
-        public Fournisseur getFournisseurRestock()
-        {
-            return this.fournisseurRestock;
-        }
+        /// <summary>
+        /// Permet d'ajouter un produit dans la liste des produits
+        /// </summary>
+        /// <param name="produit"></param>
         public void Ajout(Produit produit)
         {
             if (!DejaDansLaListe(produit.getNom(), lesProduits))
@@ -76,6 +60,12 @@ namespace Gestion_Stock_Log_Info.Controlleur
 ;
         }
 
+        /// <summary>
+        /// Permet de modifier un produit de la liste des produit
+        /// </summary>
+        /// <param name="produit"></param>
+        /// <param name="newProduit"></param>
+        /// <returns></returns>
         public bool Modif(Produit produit, Produit newProduit)
         {
             if (!DejaDansLaListe(newProduit.getNom(), lesProduits) || newProduit.getNom() == produit.getNom())
@@ -91,11 +81,21 @@ namespace Gestion_Stock_Log_Info.Controlleur
                 return false;
             }
         }
+
+        /// <summary>
+        /// Permet de supprimer un produit de la liste des produits
+        /// </summary>
+        /// <param name="produit"></param>
         public void supprProduit(Produit produit)
         {
             lesProduits.Remove(produit);
             Serialise.Sauve(fichier, lesProduits);
         }
+
+        /// <summary>
+        /// Permet de supprimer un ou plusieurs produit(s) de la liste des produits
+        /// </summary>
+        /// <param name="supprList"></param>
         public void supprProduit(List<Produit> supprList)
         {
             if (supprList.Any())
@@ -121,21 +121,47 @@ namespace Gestion_Stock_Log_Info.Controlleur
             }
         }
 
-        public List<Produit> getLesProduits()
+        /// <summary>
+        /// Permet de savoir si un produit existe déjà dans la liste des produit grâce a son nom
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="liste"></param>
+        /// <returns></returns>
+        public bool DejaDansLaListe(string nom, List<Produit> liste)
         {
-            return this.lesProduits;
+            foreach (Produit p in liste)
+            {
+                if (p.getNom() == nom)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public string getOrdre()
+        /// <summary>
+        /// Permet de savoir si un fournisseur existe déjà dans la liste des fournisseurs grâce a sa référence
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <param name="liste"></param>
+        /// <returns></returns>
+        public bool DejaDansLaListe(string reference, List<Fournisseur> liste)
         {
-            return this.ordre;
+            foreach (Fournisseur f in liste)
+            {
+                if (f.getReference() == reference)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public void setOrdre(string ordre)
-        {
-            this.ordre = ordre;
-        }
-
+        /// <summary>
+        /// Permet d'afficher les différents formulaire en fonction de l'ordre donné
+        /// </summary>
+        /// <param name="produit"></param>
+        /// <param name="ordre"></param>
         public void AfficheFrm(Produit produit, string ordre)
         {
             setOrdre(ordre);
@@ -156,7 +182,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
                     frmInfo.setNudPrixHTProduit(produit.getPrixVente());
                     frmInfo.setDateDerniereVente(produit.getDateDerniereVente());
                     frmInfo.Text = produit.getNom();
-                    foreach(Fournisseur fournisseur in produit.getFournisseurs())
+                    foreach (Fournisseur fournisseur in produit.getFournisseurs())
                     {
                         frmInfo.getListBox().Items.Add(fournisseur.ToString());
                     }
@@ -165,7 +191,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
                 case "commande":
                     frmCommande frmCommande = new frmCommande();
                     frmCommande.Text = "Commande";
-                    frmCommande.ShowDialog(); 
+                    frmCommande.ShowDialog();
                     break;
                 case "restock":
                     frmCommande frmRestock = new frmCommande();
@@ -173,44 +199,113 @@ namespace Gestion_Stock_Log_Info.Controlleur
                     frmRestock.setLesFournisseurs(produit.getFournisseurs());
                     frmRestock.ShowDialog();
                     break;
-                    
-            }
-           
-        }       
 
+            }
+
+        }
+
+        /// <summary>
+        /// Permet de sérialiser la liste des produits
+        /// </summary>
         public void Serialisation()
         {
             Serialise.Sauve(fichier, this.lesProduits);
         }
 
-        
+        #endregion
+
+        #region setters et getters
+
+        /// <summary>
+        /// Getter sur la liste des produits
+        /// </summary>
+        /// <returns>List lesProduits</returns>
+        public List<Produit> getLesProduits()
+        {
+            return this.lesProduits;
+        }
+
+        /// <summary>
+        /// Getter sur l'ordre en cours (Ajouter, Supprimer...)
+        /// </summary>
+        /// <returns></returns>
+        public string getOrdre()
+        {
+            return this.ordre;
+        }
+
+        /// <summary>
+        /// Getter sur la quantite d'un produit sélectionné lors d'une commande ou d'un restock
+        /// </summary>
+        /// <returns></returns>
+        public int getCommandeQuantite()
+        {
+            return this.quantite;
+        }
+
+        /// <summary>
+        /// Getter sur la date sélectionnée lors d'une commande ou d'un restock qui deviendra la date de derniere vente ou de dernier achat
+        /// </summary>
+        /// <returns></returns>
+        public DateTime GetCommandeDate()
+        {
+            return this.date;
+        }
+
+        /// <summary>
+        /// Getter sur le fournisseur sélectionné lors d'un restock
+        /// </summary>
+        /// <returns></returns>
+        public Fournisseur getFournisseurRestock()
+        {
+            return this.fournisseurRestock;
+        }
+
+        /// <summary>
+        /// Setter sur la liste des produits
+        /// </summary>
+        /// <param name="lesProduits"></param>
         public void setLesProduits(List<Produit> lesProduits)
         {
             this.lesProduits = lesProduits;
         }
 
-        public bool DejaDansLaListe(string nom, List<Produit> liste)
+        /// <summary>
+        /// Setter sur l'ordre en cours (Ajouter, Supprimer...)
+        /// </summary>
+        /// <param name="ordre"></param>
+        public void setOrdre(string ordre)
         {
-            foreach (Produit p in liste)
-            {
-                if (p.getNom() == nom)
-                {
-                    return true;
-                }
-            }
-            return false;
+            this.ordre = ordre;
         }
 
-        public bool DejaDansLaListe(string reference, List<Fournisseur> liste)
+        /// <summary>
+        /// Setter sur la quantite d'un produit lors d'une commande ou d'un restock
+        /// </summary>
+        /// <param name="quantite"></param>
+        public void setCommandeQuantite(int quantite)
         {
-            foreach (Fournisseur f in liste)
-            {
-                if (f.getReference() == reference)
-                {
-                    return true;
-                }
-            }
-            return false;
+            this.quantite = quantite;
         }
+
+        /// <summary>
+        /// Setter sur la date sélectionnée lors d'une commande ou d'un restock qui deviendra la date de derniere vente ou de dernier achat
+        /// </summary>
+        /// <param name="date"></param>
+        public void setCommandeDate(DateTime date)
+        {
+            this.date = date;
+        }
+
+        /// <summary>
+        /// Setter sur le fournisseur sélectionné lors d'un restock
+        /// </summary>
+        /// <param name="fournisseur"></param>
+        public void setFournisseurRestock(Fournisseur fournisseur)
+        {
+            this.fournisseurRestock = fournisseur;
+        }
+
+        #endregion
     }
 }
