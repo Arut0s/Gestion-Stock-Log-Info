@@ -217,9 +217,10 @@ namespace Gestion_Stock_Log_Info.Vue
             ActualiserListe();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
             txtRecherche.Text = "";
+            cmbFiltre.SelectedItem = "(aucun)";
         }
 
         private void lstProduit_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -436,6 +437,10 @@ namespace Gestion_Stock_Log_Info.Vue
             }
         }
 
+        private void lstProduit_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

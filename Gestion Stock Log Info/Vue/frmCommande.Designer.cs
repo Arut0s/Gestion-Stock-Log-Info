@@ -51,21 +51,21 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // nudQuantite
             // 
-            this.nudQuantite.Location = new System.Drawing.Point(13, 31);
+            this.nudQuantite.Location = new System.Drawing.Point(12, 29);
             this.nudQuantite.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.nudQuantite.Name = "nudQuantite";
-            this.nudQuantite.Size = new System.Drawing.Size(203, 22);
+            this.nudQuantite.Size = new System.Drawing.Size(245, 22);
             this.nudQuantite.TabIndex = 1;
             // 
             // btnAjouter
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(10, 191);
+            this.btnAjouter.Location = new System.Drawing.Point(12, 149);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(72, 39);
+            this.btnAjouter.Size = new System.Drawing.Size(118, 39);
             this.btnAjouter.TabIndex = 2;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = true;
@@ -73,9 +73,9 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(144, 191);
+            this.btnAnnuler.Location = new System.Drawing.Point(139, 149);
             this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(72, 34);
+            this.btnAnnuler.Size = new System.Drawing.Size(118, 39);
             this.btnAnnuler.TabIndex = 3;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // dtpDate
             // 
-            this.dtpDate.Location = new System.Drawing.Point(10, 81);
+            this.dtpDate.Location = new System.Drawing.Point(12, 74);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(245, 22);
             this.dtpDate.TabIndex = 4;
@@ -91,7 +91,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 61);
+            this.label2.Location = new System.Drawing.Point(12, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 17);
             this.label2.TabIndex = 5;
@@ -99,16 +99,17 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // cmbFournisseur
             // 
+            this.cmbFournisseur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFournisseur.FormattingEnabled = true;
-            this.cmbFournisseur.Location = new System.Drawing.Point(10, 150);
+            this.cmbFournisseur.Location = new System.Drawing.Point(12, 119);
             this.cmbFournisseur.Name = "cmbFournisseur";
-            this.cmbFournisseur.Size = new System.Drawing.Size(184, 24);
+            this.cmbFournisseur.Size = new System.Drawing.Size(245, 24);
             this.cmbFournisseur.TabIndex = 6;
             // 
             // lblFournisseur
             // 
             this.lblFournisseur.AutoSize = true;
-            this.lblFournisseur.Location = new System.Drawing.Point(12, 121);
+            this.lblFournisseur.Location = new System.Drawing.Point(12, 99);
             this.lblFournisseur.Name = "lblFournisseur";
             this.lblFournisseur.Size = new System.Drawing.Size(83, 17);
             this.lblFournisseur.TabIndex = 7;
@@ -118,7 +119,8 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 242);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(264, 197);
             this.Controls.Add(this.lblFournisseur);
             this.Controls.Add(this.cmbFournisseur);
             this.Controls.Add(this.label2);
@@ -127,6 +129,8 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.nudQuantite);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmCommande";
             this.Text = "frmCommande";
             this.Load += new System.EventHandler(this.frmCommande_Load);

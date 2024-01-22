@@ -66,6 +66,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label14 = new System.Windows.Forms.Label();
             this.lblValeurTotaleTTC = new System.Windows.Forms.Label();
             this.lblMargeTTC = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixHTProduit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixTTCProduit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantite)).BeginInit();
@@ -73,13 +74,14 @@ namespace Gestion_Stock_Log_Info.Vue
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixTTCFournisseur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixHTFournisseur)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnModifierProduit
             // 
-            this.btnModifierProduit.Location = new System.Drawing.Point(8, 228);
+            this.btnModifierProduit.Location = new System.Drawing.Point(6, 259);
             this.btnModifierProduit.Name = "btnModifierProduit";
-            this.btnModifierProduit.Size = new System.Drawing.Size(124, 58);
+            this.btnModifierProduit.Size = new System.Drawing.Size(111, 34);
             this.btnModifierProduit.TabIndex = 0;
             this.btnModifierProduit.Text = "Modifier";
             this.btnModifierProduit.UseVisualStyleBackColor = true;
@@ -87,19 +89,22 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // lstFournisseurs
             // 
+            this.lstFournisseurs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstFournisseurs.FormattingEnabled = true;
             this.lstFournisseurs.ItemHeight = 16;
-            this.lstFournisseurs.Location = new System.Drawing.Point(225, 361);
+            this.lstFournisseurs.Location = new System.Drawing.Point(257, 347);
             this.lstFournisseurs.Name = "lstFournisseurs";
-            this.lstFournisseurs.Size = new System.Drawing.Size(630, 132);
+            this.lstFournisseurs.Size = new System.Drawing.Size(499, 148);
             this.lstFournisseurs.Sorted = true;
             this.lstFournisseurs.TabIndex = 1;
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(13, 47);
+            this.txtNom.Location = new System.Drawing.Point(6, 47);
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(256, 22);
+            this.txtNom.Size = new System.Drawing.Size(346, 22);
             this.txtNom.TabIndex = 5;
             // 
             // label2
@@ -107,48 +112,48 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 17);
+            this.label2.Size = new System.Drawing.Size(45, 17);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Nom";
+            this.label2.Text = "Nom :";
             // 
             // nudPrixHTProduit
             // 
             this.nudPrixHTProduit.DecimalPlaces = 2;
-            this.nudPrixHTProduit.Location = new System.Drawing.Point(8, 181);
+            this.nudPrixHTProduit.Location = new System.Drawing.Point(6, 231);
             this.nudPrixHTProduit.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nudPrixHTProduit.Name = "nudPrixHTProduit";
-            this.nudPrixHTProduit.Size = new System.Drawing.Size(120, 22);
+            this.nudPrixHTProduit.Size = new System.Drawing.Size(160, 22);
             this.nudPrixHTProduit.TabIndex = 6;
             this.nudPrixHTProduit.ValueChanged += new System.EventHandler(this.nudPrixHTProduit_ValueChanged);
             // 
             // nudPrixTTCProduit
             // 
             this.nudPrixTTCProduit.DecimalPlaces = 2;
-            this.nudPrixTTCProduit.Location = new System.Drawing.Point(134, 181);
+            this.nudPrixTTCProduit.Location = new System.Drawing.Point(192, 231);
             this.nudPrixTTCProduit.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
             this.nudPrixTTCProduit.Name = "nudPrixTTCProduit";
-            this.nudPrixTTCProduit.Size = new System.Drawing.Size(120, 22);
+            this.nudPrixTTCProduit.Size = new System.Drawing.Size(160, 22);
             this.nudPrixTTCProduit.TabIndex = 7;
             this.nudPrixTTCProduit.ValueChanged += new System.EventHandler(this.nudPrixTTCProduit_ValueChanged);
             // 
             // nudQuantite
             // 
-            this.nudQuantite.Location = new System.Drawing.Point(260, 181);
+            this.nudQuantite.Location = new System.Drawing.Point(6, 184);
             this.nudQuantite.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nudQuantite.Name = "nudQuantite";
-            this.nudQuantite.Size = new System.Drawing.Size(120, 22);
+            this.nudQuantite.Size = new System.Drawing.Size(346, 22);
             this.nudQuantite.TabIndex = 8;
             // 
             // grpProduit
@@ -161,25 +166,25 @@ namespace Gestion_Stock_Log_Info.Vue
             this.grpProduit.Controls.Add(this.btnAnnulerProduit);
             this.grpProduit.Controls.Add(this.label5);
             this.grpProduit.Controls.Add(this.label4);
+            this.grpProduit.Controls.Add(this.nudPrixHTProduit);
             this.grpProduit.Controls.Add(this.label3);
             this.grpProduit.Controls.Add(this.btnModifierProduit);
             this.grpProduit.Controls.Add(this.nudQuantite);
             this.grpProduit.Controls.Add(this.nudPrixTTCProduit);
-            this.grpProduit.Controls.Add(this.nudPrixHTProduit);
             this.grpProduit.Controls.Add(this.txtNom);
             this.grpProduit.Controls.Add(this.label2);
             this.grpProduit.Location = new System.Drawing.Point(16, 17);
             this.grpProduit.Name = "grpProduit";
-            this.grpProduit.Size = new System.Drawing.Size(387, 310);
+            this.grpProduit.Size = new System.Drawing.Size(361, 304);
             this.grpProduit.TabIndex = 9;
             this.grpProduit.TabStop = false;
-            this.grpProduit.Text = "Produit :";
+            this.grpProduit.Text = "Produit";
             // 
             // btnSupprimerProduit
             // 
-            this.btnSupprimerProduit.Location = new System.Drawing.Point(138, 227);
+            this.btnSupprimerProduit.Location = new System.Drawing.Point(123, 259);
             this.btnSupprimerProduit.Name = "btnSupprimerProduit";
-            this.btnSupprimerProduit.Size = new System.Drawing.Size(99, 61);
+            this.btnSupprimerProduit.Size = new System.Drawing.Size(112, 34);
             this.btnSupprimerProduit.TabIndex = 19;
             this.btnSupprimerProduit.Text = "supprimer";
             this.btnSupprimerProduit.UseVisualStyleBackColor = true;
@@ -188,7 +193,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(229, 89);
+            this.label8.Location = new System.Drawing.Point(6, 72);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 17);
             this.label8.TabIndex = 18;
@@ -218,33 +223,33 @@ namespace Gestion_Stock_Log_Info.Vue
             "Reseau",
             "Sauvegarde Cloud",
             "Tablette"});
-            this.cmbCategorie.Location = new System.Drawing.Point(209, 113);
+            this.cmbCategorie.Location = new System.Drawing.Point(6, 92);
             this.cmbCategorie.Name = "cmbCategorie";
-            this.cmbCategorie.Size = new System.Drawing.Size(121, 24);
+            this.cmbCategorie.Size = new System.Drawing.Size(346, 24);
             this.cmbCategorie.TabIndex = 17;
             // 
             // dtpDerniereVente
             // 
             this.dtpDerniereVente.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDerniereVente.Location = new System.Drawing.Point(9, 123);
+            this.dtpDerniereVente.Location = new System.Drawing.Point(6, 139);
             this.dtpDerniereVente.Name = "dtpDerniereVente";
-            this.dtpDerniereVente.Size = new System.Drawing.Size(119, 22);
+            this.dtpDerniereVente.Size = new System.Drawing.Size(346, 22);
             this.dtpDerniereVente.TabIndex = 15;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 88);
+            this.label1.Location = new System.Drawing.Point(6, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 17);
+            this.label1.Size = new System.Drawing.Size(177, 17);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Date dernière vente";
+            this.label1.Text = "Date de la dernière vente :";
             // 
             // btnAnnulerProduit
             // 
-            this.btnAnnulerProduit.Location = new System.Drawing.Point(244, 228);
+            this.btnAnnulerProduit.Location = new System.Drawing.Point(241, 259);
             this.btnAnnulerProduit.Name = "btnAnnulerProduit";
-            this.btnAnnulerProduit.Size = new System.Drawing.Size(122, 58);
+            this.btnAnnulerProduit.Size = new System.Drawing.Size(111, 34);
             this.btnAnnulerProduit.TabIndex = 12;
             this.btnAnnulerProduit.Text = "Annuler";
             this.btnAnnulerProduit.UseVisualStyleBackColor = true;
@@ -253,35 +258,35 @@ namespace Gestion_Stock_Log_Info.Vue
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(257, 161);
+            this.label5.Location = new System.Drawing.Point(6, 164);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 17);
+            this.label5.Size = new System.Drawing.Size(70, 17);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Quantite";
+            this.label5.Text = "Quantite :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(131, 161);
+            this.label4.Location = new System.Drawing.Point(189, 211);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 17);
+            this.label4.Size = new System.Drawing.Size(112, 17);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Prix TTC";
+            this.label4.Text = "Prix (TTC) en € :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 161);
+            this.label3.Location = new System.Drawing.Point(6, 211);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 17);
+            this.label3.Size = new System.Drawing.Size(104, 17);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Prix HT";
+            this.label3.Text = "Prix (HT) en € :";
             // 
             // btnAjouterFournisseur
             // 
-            this.btnAjouterFournisseur.Location = new System.Drawing.Point(18, 239);
+            this.btnAjouterFournisseur.Location = new System.Drawing.Point(6, 259);
             this.btnAjouterFournisseur.Name = "btnAjouterFournisseur";
-            this.btnAjouterFournisseur.Size = new System.Drawing.Size(75, 34);
+            this.btnAjouterFournisseur.Size = new System.Drawing.Size(82, 34);
             this.btnAjouterFournisseur.TabIndex = 11;
             this.btnAjouterFournisseur.Text = "Ajouter";
             this.btnAjouterFournisseur.UseVisualStyleBackColor = true;
@@ -289,9 +294,9 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnModifierFournisseur
             // 
-            this.btnModifierFournisseur.Location = new System.Drawing.Point(99, 230);
+            this.btnModifierFournisseur.Location = new System.Drawing.Point(94, 259);
             this.btnModifierFournisseur.Name = "btnModifierFournisseur";
-            this.btnModifierFournisseur.Size = new System.Drawing.Size(75, 50);
+            this.btnModifierFournisseur.Size = new System.Drawing.Size(82, 34);
             this.btnModifierFournisseur.TabIndex = 12;
             this.btnModifierFournisseur.Text = "Modifier";
             this.btnModifierFournisseur.UseVisualStyleBackColor = true;
@@ -300,17 +305,17 @@ namespace Gestion_Stock_Log_Info.Vue
             // lblMargeHT
             // 
             this.lblMargeHT.AutoSize = true;
-            this.lblMargeHT.Location = new System.Drawing.Point(13, 407);
+            this.lblMargeHT.Location = new System.Drawing.Point(6, 102);
             this.lblMargeHT.Name = "lblMargeHT";
-            this.lblMargeHT.Size = new System.Drawing.Size(56, 17);
+            this.lblMargeHT.Size = new System.Drawing.Size(89, 17);
             this.lblMargeHT.TabIndex = 13;
-            this.lblMargeHT.Text = "Marge :";
+            this.lblMargeHT.Text = "Marge (HT) :";
             // 
             // btnSupprimerFournisseur
             // 
-            this.btnSupprimerFournisseur.Location = new System.Drawing.Point(180, 239);
+            this.btnSupprimerFournisseur.Location = new System.Drawing.Point(182, 259);
             this.btnSupprimerFournisseur.Name = "btnSupprimerFournisseur";
-            this.btnSupprimerFournisseur.Size = new System.Drawing.Size(68, 38);
+            this.btnSupprimerFournisseur.Size = new System.Drawing.Size(82, 34);
             this.btnSupprimerFournisseur.TabIndex = 14;
             this.btnSupprimerFournisseur.Text = "Supprimer";
             this.btnSupprimerFournisseur.UseVisualStyleBackColor = true;
@@ -319,7 +324,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // lblValeurTotalHT
             // 
             this.lblValeurTotalHT.AutoSize = true;
-            this.lblValeurTotalHT.Location = new System.Drawing.Point(12, 361);
+            this.lblValeurTotalHT.Location = new System.Drawing.Point(6, 47);
             this.lblValeurTotalHT.Name = "lblValeurTotalHT";
             this.lblValeurTotalHT.Size = new System.Drawing.Size(138, 17);
             this.lblValeurTotalHT.TabIndex = 15;
@@ -341,18 +346,18 @@ namespace Gestion_Stock_Log_Info.Vue
             this.groupBox1.Controls.Add(this.btnSupprimerFournisseur);
             this.groupBox1.Controls.Add(this.btnModifierFournisseur);
             this.groupBox1.Controls.Add(this.btnAjouterFournisseur);
-            this.groupBox1.Location = new System.Drawing.Point(420, 23);
+            this.groupBox1.Location = new System.Drawing.Point(395, 17);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 304);
+            this.groupBox1.Size = new System.Drawing.Size(361, 304);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Fournisseur(s)";
+            this.groupBox1.Text = "Fournisseur";
             // 
             // btnAnnulerFournisseur
             // 
-            this.btnAnnulerFournisseur.Location = new System.Drawing.Point(271, 239);
+            this.btnAnnulerFournisseur.Location = new System.Drawing.Point(270, 259);
             this.btnAnnulerFournisseur.Name = "btnAnnulerFournisseur";
-            this.btnAnnulerFournisseur.Size = new System.Drawing.Size(104, 43);
+            this.btnAnnulerFournisseur.Size = new System.Drawing.Size(82, 34);
             this.btnAnnulerFournisseur.TabIndex = 25;
             this.btnAnnulerFournisseur.Text = "Annuler";
             this.btnAnnulerFournisseur.UseVisualStyleBackColor = true;
@@ -361,101 +366,101 @@ namespace Gestion_Stock_Log_Info.Vue
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(200, 155);
+            this.label13.Location = new System.Drawing.Point(6, 162);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 17);
+            this.label13.Size = new System.Drawing.Size(154, 17);
             this.label13.TabIndex = 24;
-            this.label13.Text = "Prix HT";
+            this.label13.Text = "Prix d\'achat (HT) en € :";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(295, 117);
+            this.label12.Location = new System.Drawing.Point(6, 211);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 17);
+            this.label12.Size = new System.Drawing.Size(162, 17);
             this.label12.TabIndex = 23;
-            this.label12.Text = "Prix TTC";
+            this.label12.Text = "Prix d\'achat (TTC) en € :";
             // 
             // nudPrixTTCFournisseur
             // 
             this.nudPrixTTCFournisseur.DecimalPlaces = 2;
-            this.nudPrixTTCFournisseur.Location = new System.Drawing.Point(289, 149);
+            this.nudPrixTTCFournisseur.Location = new System.Drawing.Point(6, 231);
             this.nudPrixTTCFournisseur.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nudPrixTTCFournisseur.Name = "nudPrixTTCFournisseur";
-            this.nudPrixTTCFournisseur.Size = new System.Drawing.Size(120, 22);
+            this.nudPrixTTCFournisseur.Size = new System.Drawing.Size(346, 22);
             this.nudPrixTTCFournisseur.TabIndex = 22;
             this.nudPrixTTCFournisseur.ValueChanged += new System.EventHandler(this.nudPrixTTCFournisseur_ValueChanged);
             // 
             // nudPrixHTFournisseur
             // 
             this.nudPrixHTFournisseur.DecimalPlaces = 2;
-            this.nudPrixHTFournisseur.Location = new System.Drawing.Point(195, 185);
+            this.nudPrixHTFournisseur.Location = new System.Drawing.Point(6, 182);
             this.nudPrixHTFournisseur.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nudPrixHTFournisseur.Name = "nudPrixHTFournisseur";
-            this.nudPrixHTFournisseur.Size = new System.Drawing.Size(120, 22);
+            this.nudPrixHTFournisseur.Size = new System.Drawing.Size(346, 22);
             this.nudPrixHTFournisseur.TabIndex = 21;
             this.nudPrixHTFournisseur.ValueChanged += new System.EventHandler(this.nudPrixHTFournisseur_ValueChanged);
             // 
             // dtpDateDernierAchat
             // 
-            this.dtpDateDernierAchat.Location = new System.Drawing.Point(21, 185);
+            this.dtpDateDernierAchat.Location = new System.Drawing.Point(6, 137);
             this.dtpDateDernierAchat.Name = "dtpDateDernierAchat";
-            this.dtpDateDernierAchat.Size = new System.Drawing.Size(168, 22);
+            this.dtpDateDernierAchat.Size = new System.Drawing.Size(346, 22);
             this.dtpDateDernierAchat.TabIndex = 20;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(21, 154);
+            this.label11.Location = new System.Drawing.Point(6, 117);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(126, 17);
+            this.label11.Size = new System.Drawing.Size(154, 17);
             this.label11.TabIndex = 19;
-            this.label11.Text = "Date dernier achat";
+            this.label11.Text = "Date du dernier achat :";
             // 
             // txtNomFournisseur
             // 
-            this.txtNomFournisseur.Location = new System.Drawing.Point(18, 109);
+            this.txtNomFournisseur.Location = new System.Drawing.Point(6, 47);
             this.txtNomFournisseur.Name = "txtNomFournisseur";
-            this.txtNomFournisseur.Size = new System.Drawing.Size(256, 22);
+            this.txtNomFournisseur.Size = new System.Drawing.Size(346, 22);
             this.txtNomFournisseur.TabIndex = 18;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 83);
+            this.label10.Location = new System.Drawing.Point(6, 27);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 17);
+            this.label10.Size = new System.Drawing.Size(45, 17);
             this.label10.TabIndex = 17;
-            this.label10.Text = "Nom";
+            this.label10.Text = "Nom :";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 29);
+            this.label6.Location = new System.Drawing.Point(6, 72);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 17);
+            this.label6.Size = new System.Drawing.Size(82, 17);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Reference";
+            this.label6.Text = "Reference :";
             // 
             // txtReferenceFournisseur
             // 
-            this.txtReferenceFournisseur.Location = new System.Drawing.Point(18, 52);
+            this.txtReferenceFournisseur.Location = new System.Drawing.Point(6, 92);
             this.txtReferenceFournisseur.Name = "txtReferenceFournisseur";
-            this.txtReferenceFournisseur.Size = new System.Drawing.Size(256, 22);
+            this.txtReferenceFournisseur.Size = new System.Drawing.Size(346, 22);
             this.txtReferenceFournisseur.TabIndex = 15;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(222, 341);
+            this.label14.Location = new System.Drawing.Point(257, 324);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(155, 17);
             this.label14.TabIndex = 17;
@@ -464,7 +469,7 @@ namespace Gestion_Stock_Log_Info.Vue
             // lblValeurTotaleTTC
             // 
             this.lblValeurTotaleTTC.AutoSize = true;
-            this.lblValeurTotaleTTC.Location = new System.Drawing.Point(13, 390);
+            this.lblValeurTotaleTTC.Location = new System.Drawing.Point(6, 75);
             this.lblValeurTotaleTTC.Name = "lblValeurTotaleTTC";
             this.lblValeurTotaleTTC.Size = new System.Drawing.Size(146, 17);
             this.lblValeurTotaleTTC.TabIndex = 18;
@@ -473,23 +478,33 @@ namespace Gestion_Stock_Log_Info.Vue
             // lblMargeTTC
             // 
             this.lblMargeTTC.AutoSize = true;
-            this.lblMargeTTC.Location = new System.Drawing.Point(12, 438);
+            this.lblMargeTTC.Location = new System.Drawing.Point(6, 131);
             this.lblMargeTTC.Name = "lblMargeTTC";
-            this.lblMargeTTC.Size = new System.Drawing.Size(56, 17);
+            this.lblMargeTTC.Size = new System.Drawing.Size(97, 17);
             this.lblMargeTTC.TabIndex = 19;
-            this.lblMargeTTC.Text = "Marge :";
+            this.lblMargeTTC.Text = "Marge (TTC) :";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblMargeTTC);
+            this.groupBox2.Controls.Add(this.lblValeurTotaleTTC);
+            this.groupBox2.Controls.Add(this.lblValeurTotalHT);
+            this.groupBox2.Controls.Add(this.lblMargeHT);
+            this.groupBox2.Location = new System.Drawing.Point(16, 327);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(235, 168);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Informations supplémentaires";
             // 
             // frmInfoProduit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 509);
-            this.Controls.Add(this.lblMargeTTC);
-            this.Controls.Add(this.lblValeurTotaleTTC);
+            this.ClientSize = new System.Drawing.Size(768, 510);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblValeurTotalHT);
-            this.Controls.Add(this.lblMargeHT);
             this.Controls.Add(this.grpProduit);
             this.Controls.Add(this.lstFournisseurs);
             this.Name = "frmInfoProduit";
@@ -504,6 +519,8 @@ namespace Gestion_Stock_Log_Info.Vue
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixTTCFournisseur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixHTFournisseur)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -548,5 +565,6 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblValeurTotaleTTC;
         private System.Windows.Forms.Label lblMargeTTC;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

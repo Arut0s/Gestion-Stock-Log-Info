@@ -155,6 +155,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
                     frmInfo.setCmbCategorie(produit.getCategorie());
                     frmInfo.setNudPrixHTProduit(produit.getPrixVente());
                     frmInfo.setDateDerniereVente(produit.getDateDerniereVente());
+                    frmInfo.Text = produit.getNom();
                     foreach(Fournisseur fournisseur in produit.getFournisseurs())
                     {
                         frmInfo.getListBox().Items.Add(fournisseur.ToString());

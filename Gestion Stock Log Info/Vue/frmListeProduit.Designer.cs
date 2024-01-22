@@ -41,7 +41,6 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label2 = new System.Windows.Forms.Label();
             this.cmbFiltre = new System.Windows.Forms.ComboBox();
             this.btnAjouter = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
@@ -49,6 +48,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnCommande = new System.Windows.Forms.Button();
             this.btnDecoche = new System.Windows.Forms.Button();
             this.btnRestock = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstProduit
@@ -69,69 +69,71 @@ namespace Gestion_Stock_Log_Info.Vue
             this.lstProduit.FullRowSelect = true;
             this.lstProduit.HideSelection = false;
             this.lstProduit.Location = new System.Drawing.Point(12, 96);
+            this.lstProduit.MultiSelect = false;
             this.lstProduit.Name = "lstProduit";
-            this.lstProduit.Size = new System.Drawing.Size(1159, 329);
+            this.lstProduit.Size = new System.Drawing.Size(1158, 361);
             this.lstProduit.TabIndex = 0;
             this.lstProduit.UseCompatibleStateImageBehavior = false;
             this.lstProduit.View = System.Windows.Forms.View.Details;
             this.lstProduit.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Column_Click);
             this.lstProduit.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lstProduit_ItemChecked);
+            this.lstProduit.DoubleClick += new System.EventHandler(this.lstProduit_DoubleClick);
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Nom";
-            this.columnHeader6.Width = 31;
+            this.columnHeader6.Width = 200;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Catégorie";
-            this.columnHeader2.Width = 71;
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Quantité";
-            this.columnHeader3.Width = 61;
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Prix (HT)";
-            this.columnHeader4.Width = 64;
+            this.columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Prix (TTC)";
-            this.columnHeader5.Width = 72;
+            this.columnHeader5.Width = 100;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Date dernière vente";
-            this.columnHeader1.Width = 846;
+            this.columnHeader1.Width = 150;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 19);
+            this.label1.Location = new System.Drawing.Point(12, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Recherche";
+            this.label1.Text = "Recherche :";
             // 
             // txtRecherche
             // 
-            this.txtRecherche.Location = new System.Drawing.Point(12, 43);
+            this.txtRecherche.Location = new System.Drawing.Point(12, 27);
             this.txtRecherche.Name = "txtRecherche";
-            this.txtRecherche.Size = new System.Drawing.Size(100, 22);
+            this.txtRecherche.Size = new System.Drawing.Size(193, 22);
             this.txtRecherche.TabIndex = 2;
             this.txtRecherche.TextChanged += new System.EventHandler(this.txtRecherche_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(155, 9);
+            this.label2.Location = new System.Drawing.Point(208, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 17);
+            this.label2.Size = new System.Drawing.Size(47, 17);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Filtre";
+            this.label2.Text = "Filtre :";
             // 
             // cmbFiltre
             // 
@@ -158,9 +160,9 @@ namespace Gestion_Stock_Log_Info.Vue
             "Reseau",
             "Sauvegarde Cloud",
             "Tablette"});
-            this.cmbFiltre.Location = new System.Drawing.Point(158, 37);
+            this.cmbFiltre.Location = new System.Drawing.Point(211, 25);
             this.cmbFiltre.Name = "cmbFiltre";
-            this.cmbFiltre.Size = new System.Drawing.Size(121, 24);
+            this.cmbFiltre.Size = new System.Drawing.Size(193, 24);
             this.cmbFiltre.Sorted = true;
             this.cmbFiltre.TabIndex = 4;
             this.cmbFiltre.SelectedIndexChanged += new System.EventHandler(this.cmbFiltre_SelectedIndexChanged);
@@ -168,32 +170,19 @@ namespace Gestion_Stock_Log_Info.Vue
             // btnAjouter
             // 
             this.btnAjouter.AutoSize = true;
-            this.btnAjouter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAjouter.Location = new System.Drawing.Point(300, 38);
+            this.btnAjouter.Location = new System.Drawing.Point(551, 12);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(63, 27);
+            this.btnAjouter.Size = new System.Drawing.Size(100, 40);
             this.btnAjouter.TabIndex = 5;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = true;
             this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.Location = new System.Drawing.Point(739, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 27);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Actualiser";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button3
             // 
             this.button3.AutoSize = true;
             this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button3.Location = new System.Drawing.Point(739, 42);
+            this.button3.Location = new System.Drawing.Point(995, 59);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(135, 27);
             this.button3.TabIndex = 7;
@@ -204,10 +193,9 @@ namespace Gestion_Stock_Log_Info.Vue
             // btnInfo
             // 
             this.btnInfo.AutoSize = true;
-            this.btnInfo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnInfo.Location = new System.Drawing.Point(369, 38);
+            this.btnInfo.Location = new System.Drawing.Point(657, 12);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(41, 27);
+            this.btnInfo.Size = new System.Drawing.Size(100, 40);
             this.btnInfo.TabIndex = 8;
             this.btnInfo.Text = "Info";
             this.btnInfo.UseVisualStyleBackColor = true;
@@ -215,9 +203,9 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(416, 40);
+            this.btnSupprimer.Location = new System.Drawing.Point(763, 12);
             this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(75, 23);
+            this.btnSupprimer.Size = new System.Drawing.Size(100, 40);
             this.btnSupprimer.TabIndex = 9;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
@@ -225,21 +213,20 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnClear
             // 
-            this.btnClear.AutoSize = true;
             this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnClear.Location = new System.Drawing.Point(118, 43);
+            this.btnClear.Location = new System.Drawing.Point(410, 12);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(51, 27);
+            this.btnClear.Size = new System.Drawing.Size(75, 40);
             this.btnClear.TabIndex = 10;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.button1_Click);
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnCommande
             // 
-            this.btnCommande.Location = new System.Drawing.Point(505, 37);
+            this.btnCommande.Location = new System.Drawing.Point(928, 12);
             this.btnCommande.Name = "btnCommande";
-            this.btnCommande.Size = new System.Drawing.Size(99, 27);
+            this.btnCommande.Size = new System.Drawing.Size(100, 40);
             this.btnCommande.TabIndex = 11;
             this.btnCommande.Text = "Commande";
             this.btnCommande.UseVisualStyleBackColor = true;
@@ -247,23 +234,31 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // btnDecoche
             // 
-            this.btnDecoche.Location = new System.Drawing.Point(369, 5);
+            this.btnDecoche.Location = new System.Drawing.Point(12, 65);
             this.btnDecoche.Name = "btnDecoche";
-            this.btnDecoche.Size = new System.Drawing.Size(150, 29);
+            this.btnDecoche.Size = new System.Drawing.Size(25, 25);
             this.btnDecoche.TabIndex = 12;
-            this.btnDecoche.Text = " Tout Decocher";
             this.btnDecoche.UseVisualStyleBackColor = true;
             this.btnDecoche.Click += new System.EventHandler(this.btnDecoche_Click);
             // 
             // btnRestock
             // 
-            this.btnRestock.Location = new System.Drawing.Point(611, 42);
+            this.btnRestock.Location = new System.Drawing.Point(1030, 12);
             this.btnRestock.Name = "btnRestock";
-            this.btnRestock.Size = new System.Drawing.Size(75, 23);
+            this.btnRestock.Size = new System.Drawing.Size(100, 40);
             this.btnRestock.TabIndex = 13;
             this.btnRestock.Text = "Restock";
             this.btnRestock.UseVisualStyleBackColor = true;
             this.btnRestock.Click += new System.EventHandler(this.btnRestock_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(43, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Tout décocher";
             // 
             // frmListeProduit
             // 
@@ -271,7 +266,8 @@ namespace Gestion_Stock_Log_Info.Vue
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1183, 437);
+            this.ClientSize = new System.Drawing.Size(1182, 469);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRestock);
             this.Controls.Add(this.btnDecoche);
             this.Controls.Add(this.btnCommande);
@@ -279,7 +275,6 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.cmbFiltre);
             this.Controls.Add(this.label2);
@@ -287,7 +282,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstProduit);
             this.Name = "frmListeProduit";
-            this.Text = "frmListeProduit";
+            this.Text = "Gestion Stock Log Info";
             this.Load += new System.EventHandler(this.frmListeProduit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -302,7 +297,6 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbFiltre;
         private System.Windows.Forms.Button btnAjouter;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -316,5 +310,6 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Button btnCommande;
         private System.Windows.Forms.Button btnDecoche;
         private System.Windows.Forms.Button btnRestock;
+        private System.Windows.Forms.Label label3;
     }
 }
