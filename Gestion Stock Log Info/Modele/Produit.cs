@@ -125,7 +125,7 @@ namespace Gestion_Stock_Log_Info.Modele
         /// <returns></returns>
         public override string ToString()
         {
-            return "Nom : " + nom + ", Catégorie : " + categorie;
+            return nom +" ("+ categorie+") "+ prixvente.ToString("N2")+"€ (HT) et "+Math.Round(prixvente*(decimal)1.2,2).ToString("N2")+"€ (TTC)";
         }
     }
 }

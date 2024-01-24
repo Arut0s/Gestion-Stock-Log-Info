@@ -44,6 +44,7 @@ namespace Gestion_Stock_Log_Info.Vue
             if (btnModifierProduit.Text == "Modifier")
             {
                 EnableProduit();
+                txtNom.Focus();
                 btnModifierProduit.Text = "Valider";
             }
             else
@@ -69,7 +70,7 @@ namespace Gestion_Stock_Log_Info.Vue
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez renseigner tout les champs");
+                    MessageBox.Show("Veuillez renseigner tout les champs", "Opération Impossible");
                 }
             }
         }
@@ -81,7 +82,7 @@ namespace Gestion_Stock_Log_Info.Vue
         /// <param name="e"></param>
         private void btnSupprimerProduit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Êtes vous sur de vouloir supprimer le produit : " + produitActuel.ToString() + " ?", "Confirmer la suppression", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("Êtes-vous sur de vouloir supprimer le produit : " + produitActuel.ToString() + " ?", "Confirmer la suppression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 controle.supprProduit(produitActuel);
                 this.Close();
@@ -110,19 +111,11 @@ namespace Gestion_Stock_Log_Info.Vue
         private void DisableProduit()
         {
             btnAnnulerProduit.Enabled = false;
-            txtNom.ReadOnly = true;
-
-            nudPrixHTProduit.Controls[0].Enabled = false;
-            nudPrixHTProduit.ReadOnly = true;
-
-            nudPrixTTCProduit.Controls[0].Enabled = false;
-            nudPrixTTCProduit.ReadOnly = true;
-
-            nudQuantite.Controls[0].Enabled = false;
-            nudQuantite.ReadOnly = true;
-
+            txtNom.Enabled = false;
+            nudPrixHTProduit.Enabled = false;
+            nudPrixTTCProduit.Enabled = false;
+            nudQuantite.Enabled = false;
             cmbCategorie.Enabled = false;
-
             dtpDerniereVente.Enabled = false;
         }
 
@@ -132,20 +125,11 @@ namespace Gestion_Stock_Log_Info.Vue
         private void EnableProduit()
         {
             btnAnnulerProduit.Enabled = true;
-
-            txtNom.ReadOnly = false;
-
-            nudPrixHTProduit.Controls[0].Enabled = true;
-            nudPrixHTProduit.ReadOnly = false;
-
-            nudPrixTTCProduit.Controls[0].Enabled = true;
-            nudPrixTTCProduit.ReadOnly = false;
-
-            nudQuantite.Controls[0].Enabled = true;
-            nudQuantite.ReadOnly = false;
-
+            txtNom.Enabled = true;
+            nudPrixHTProduit.Enabled = true;
+            nudPrixTTCProduit.Enabled = true;
+            nudQuantite.Enabled = true;
             cmbCategorie.Enabled = true;
-
             dtpDerniereVente.Enabled = true;
         }
 
@@ -185,10 +169,12 @@ namespace Gestion_Stock_Log_Info.Vue
         {
             if (btnAjouterFournisseur.Text == "Ajouter")
             {
+
                 EnableFournisseur();
                 btnAjouterFournisseur.Text = "Valider";
                 btnModifierFournisseur.Enabled = false;
                 btnSupprimerFournisseur.Enabled = false;
+                txtNomFournisseur.Focus();
             }
             else
             {
@@ -197,25 +183,42 @@ namespace Gestion_Stock_Log_Info.Vue
                     Fournisseur fournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Math.Round(nudPrixHTFournisseur.Value, 2), dtpDateDernierAchat.Value);
                     if (controle.DejaDansLaListe(fournisseur.getReference(), produitActuel.getFournisseurs()) || produitActuel.getFournisseurs().Any(f => f.getNom() == fournisseur.getNom()))
                     {
-                        MessageBox.Show("Ce founisseur existe déjà");
+                        MessageBox.Show("Ce founisseur existe déjà", "Opération Impossible");
                     }
                     else
                     {
-                        DisableFournisseur();
-                        btnAjouterFournisseur.Text = "Ajouter";
-                        produitActuel.getFournisseurs().Add(fournisseur);
-                        btnModifierFournisseur.Enabled = true;
-                        btnSupprimerFournisseur.Enabled = true;
-                        txtReferenceFournisseur.Text = "";
-                        txtNomFournisseur.Text = "";
-                        nudPrixHTFournisseur.Value = 0;
-                        ActualiserListe();
-                        controle.Serialisation();
+                        bool ok = true;
+                        for (int k = 0; k < controle.getLesProduits().Count; k++)
+                        {
+                            if (controle.getLesProduits()[k].getFournisseurs().Any(f => f.getReference() == fournisseur.getReference()))
+                            {
+
+                                ok = false;
+                            }
+                        }
+                        if (ok)
+                        {
+                            DisableFournisseur();
+                            btnAjouterFournisseur.Text = "Ajouter";
+                            produitActuel.getFournisseurs().Add(fournisseur);
+                            btnModifierFournisseur.Enabled = true;
+                            btnSupprimerFournisseur.Enabled = true;
+                            txtReferenceFournisseur.Text = "";
+                            txtNomFournisseur.Text = "";
+                            nudPrixHTFournisseur.Value = 0;
+                            ActualiserListe();
+                            controle.Serialisation();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Il y a déjà un couple produit/fournisseur ayant cette référence", "Opération Impossible");
+                        }
+                      
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez renseigner tout les champs");
+                    MessageBox.Show("Veuillez renseigner tout les champs", "Opération Impossible");
                 }
 
             }
@@ -236,7 +239,18 @@ namespace Gestion_Stock_Log_Info.Vue
                     if (txtReferenceFournisseur.Text != "" && txtNomFournisseur.Text != "")
                     {
                         Fournisseur newfournisseur = new Fournisseur(txtReferenceFournisseur.Text, txtNomFournisseur.Text, Math.Round(nudPrixHTFournisseur.Value, 2), dtpDateDernierAchat.Value);
-                        if (AllowModifFournisseur(fournisseur, newfournisseur))
+                        bool ok = true;
+                        for (int k = 0; k < controle.getLesProduits().Count; k++)
+                        {
+                            if (controle.getLesProduits()[k].getFournisseurs().Any(f => f.getReference() == newfournisseur.getReference()))
+                            {
+                                if(!(newfournisseur.getReference() == fournisseur.getReference()))
+                                {
+                                    ok = false;
+                                }   
+                            }
+                        }
+                        if (AllowModifFournisseur(fournisseur, newfournisseur) && ok == true)
                         {
                             DisableFournisseur();
                             produitActuel.getFournisseurs().Remove(fournisseur);
@@ -252,12 +266,12 @@ namespace Gestion_Stock_Log_Info.Vue
                         }
                         else
                         {
-                            MessageBox.Show("Ce fournisseur existe déjà");
+                            MessageBox.Show("Il y a déjà un couple produit/fournisseur ayant cette référence", "Opération Impossible");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Veuillez renseigner tout les champs");
+                        MessageBox.Show("Veuillez renseigner tout les champs", "Opération Impossible");
                     }
 
                 }
@@ -266,15 +280,16 @@ namespace Gestion_Stock_Log_Info.Vue
                     EnableFournisseur();
                     btnModifierFournisseur.Text = "Valider";
                     btnAjouterFournisseur.Enabled = false;
-                    btnSupprimerFournisseur.Enabled = false;
+                    btnSupprimerFournisseur.Enabled = false;                   
                     txtReferenceFournisseur.Text = fournisseur.getReference();
                     txtNomFournisseur.Text = fournisseur.getNom();
                     nudPrixHTFournisseur.Value = Convert.ToDecimal(fournisseur.getPrixAchat());
+                    txtNomFournisseur.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("Veuillez selectionner une ligne dans la liste des fournisseurs", "erreur");
+                MessageBox.Show("Veuillez selectionner une ligne dans la liste des fournisseurs", "Opération Impossible");
             }
         }
 
@@ -288,13 +303,17 @@ namespace Gestion_Stock_Log_Info.Vue
             if (lstFournisseurs.SelectedIndex != -1)
             {
                 Fournisseur fournisseur = produitActuel.getFournisseurs().Single(p => lstFournisseurs.SelectedItem.ToString().Contains(p.ToString()));
-                if (MessageBox.Show(fournisseur.ToString(), "Confirmer la suppression", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer le fournisseur : " + fournisseur.ToString(), "Confirmer la suppression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     produitActuel.getFournisseurs().Remove(fournisseur);
                     MessageBox.Show("Fournisseur supprimé avec succès", "Succès");
                     ActualiserListe();
                     controle.Serialisation();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une ligne", "Opération Impossible");
             }
         }
 
@@ -309,6 +328,8 @@ namespace Gestion_Stock_Log_Info.Vue
             {
                 DisableFournisseur();
                 btnAjouterFournisseur.Text = "Ajouter";
+                btnModifierFournisseur.Enabled = true;
+                btnSupprimerFournisseur.Enabled = true;
                 txtReferenceFournisseur.Text = "";
                 txtNomFournisseur.Text = "";
                 nudPrixHTFournisseur.Value = 0;
@@ -359,7 +380,8 @@ namespace Gestion_Stock_Log_Info.Vue
                     k++;
                 }
             }
-            return k == 2;
+
+            return k == 2;      
         }
 
         /// <summary>
@@ -368,17 +390,10 @@ namespace Gestion_Stock_Log_Info.Vue
         private void DisableFournisseur()
         {
             btnAnnulerFournisseur.Enabled = false;
-
-            txtReferenceFournisseur.ReadOnly = true;
-
-            txtNomFournisseur.ReadOnly = true;
-
-            nudPrixHTFournisseur.Controls[0].Enabled = false;
-            nudPrixHTFournisseur.ReadOnly = true;
-
-            nudPrixTTCFournisseur.Controls[0].Enabled = false;
-            nudPrixTTCFournisseur.ReadOnly = true;
-
+            txtReferenceFournisseur.Enabled = false;
+            txtNomFournisseur.Enabled = false;
+            nudPrixHTFournisseur.Enabled = false;
+            nudPrixTTCFournisseur.Enabled = false;
             dtpDateDernierAchat.Enabled = false;
         }
 
@@ -388,17 +403,10 @@ namespace Gestion_Stock_Log_Info.Vue
         private void EnableFournisseur()
         {
             btnAnnulerFournisseur.Enabled = true;
-
-            txtReferenceFournisseur.ReadOnly = false;
-
-            txtNomFournisseur.ReadOnly = false;
-
-            nudPrixHTFournisseur.Controls[0].Enabled = true;
-            nudPrixHTFournisseur.ReadOnly = false;
-
-            nudPrixTTCFournisseur.Controls[0].Enabled = true;
-            nudPrixTTCFournisseur.ReadOnly = false;
-
+            txtReferenceFournisseur.Enabled = true;
+            txtNomFournisseur.Enabled = true;
+            nudPrixHTFournisseur.Enabled = true;
+            nudPrixTTCFournisseur.Enabled = true;
             dtpDateDernierAchat.Enabled = true;
         }
 
@@ -410,12 +418,26 @@ namespace Gestion_Stock_Log_Info.Vue
             nudPrixHTFournisseur.ValueChanged += new EventHandler(nudPrixHTFournisseur_ValueChanged);
         }
 
+        /// <summary>
         /// Evenement permettant d'actualiser le nudTTC en fonction du nudHT
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nudPrixHTFournisseur_ValueChanged(object sender, EventArgs e)
         {
             nudPrixTTCFournisseur.ValueChanged -= new EventHandler(nudPrixTTCFournisseur_ValueChanged);
             nudPrixTTCFournisseur.Value = nudPrixHTFournisseur.Value * (decimal)1.2;
             nudPrixTTCFournisseur.ValueChanged += new EventHandler(nudPrixTTCFournisseur_ValueChanged);
+        }
+
+        /// <summary>
+        /// Evenement permettant d'actualiser la liste avec un double click (la liste s'affiche mal lors du fullscreen)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstFournisseurs_DoubleClick(object sender, EventArgs e)
+        {
+            ActualiserListe();
         }
 
         #endregion
@@ -431,10 +453,11 @@ namespace Gestion_Stock_Log_Info.Vue
             List<decimal> lesMarges = new List<decimal>();
             lblValeurTotalHT.Text = "Valeur Totale (HT) : " + (nudQuantite.Value * nudPrixHTProduit.Value).ToString("N2") + "€";
             lblValeurTotaleTTC.Text = "Valeur Totale (TTC) : " + (nudQuantite.Value * nudPrixTTCProduit.Value).ToString("N2") + "€";
+            Text = produitActuel.getNom();
             foreach (Fournisseur fournisseur in produitActuel.getFournisseurs())
             {
                 decimal margeHT = produitActuel.getPrixVente() - fournisseur.getPrixAchat();
-                lstFournisseurs.Items.Add(fournisseur.ToString() + " Marge (HT) : " + margeHT.ToString("N2") + "Marge (TTC) : " + (margeHT * (decimal)1.2).ToString("N2"));
+                lstFournisseurs.Items.Add(fournisseur.ToString() + ". Marge (HT) : " + margeHT.ToString("N2") + "€, " + "marge (TTC) : " + (margeHT * (decimal)1.2).ToString("N2") + "€");
                 lesMarges.Add(margeHT);
             }
             if (!lesMarges.Any())
@@ -458,7 +481,7 @@ namespace Gestion_Stock_Log_Info.Vue
         }
 
         /// <summary>
-        /// Methode permettant l'affichage d'un fournisseur sur plusieurs lignes
+        /// Evenement permettant l'affichage d'un fournisseur sur plusieurs lignes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -468,17 +491,24 @@ namespace Gestion_Stock_Log_Info.Vue
         }
 
         /// <summary>
-        /// Methode permettant l'affichage d'un fournisseur sur plusieurs lignes
+        /// Evenement permettant l'affichage d'un fournisseur sur plusieurs lignes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void lst_DrawItem(object sender, DrawItemEventArgs e)
         {
-            if (produitActuel.getFournisseurs().Any())
+            try
             {
-                e.DrawBackground();
-                e.DrawFocusRectangle();
-                e.Graphics.DrawString(lstFournisseurs.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds);
+                if (produitActuel.getFournisseurs().Any())
+                {
+                    e.DrawBackground();
+                    e.DrawFocusRectangle();
+                    e.Graphics.DrawString(lstFournisseurs.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds);
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -496,8 +526,30 @@ namespace Gestion_Stock_Log_Info.Vue
             ActualiserListe();
         }
 
-        #endregion
+        /// <summary>
+        /// Evenement permettant de rafraichir la liste lors du changemenet de taille de la fenêtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmInfoProduit_ResizeEnd(object sender, EventArgs e)
+        {
+            if (produitActuel != null)
+            {
+                ActualiserListe();
+            }
+        }
 
+        /// <summary>
+        /// Evenement permettant de fermer le formulaire
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        #endregion
 
         #region getters et setters
 
@@ -559,6 +611,7 @@ namespace Gestion_Stock_Log_Info.Vue
             dtpDerniereVente.Value = date;
         }
 
-        #endregion 
+
+        #endregion
     }
 }

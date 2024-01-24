@@ -55,7 +55,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
             }
             else
             {
-                MessageBox.Show("Le produit existe déjà "+lesProduits.Single(p => p.getNom() == produit.getNom())+ " (pour le modifier, ouvrez d'abord ses informations)", "Erreur");
+                MessageBox.Show("Le produit existe déjà "+lesProduits.Single(p => p.getNom() == produit.getNom())+ " (pour le modifier, ouvrez d'abord ses informations)", "Opération Impossible");
             }
 ;
         }
@@ -77,7 +77,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
             }
             else
             {
-                MessageBox.Show("Le produit existe déjà " + lesProduits.Single(p => p.getNom() == produit.getNom()), "Erreur");
+                MessageBox.Show("Le produit existe déjà " + lesProduits.Single(p => p.getNom() == produit.getNom()), "Opération Impossible");
                 return false;
             }
         }
@@ -117,7 +117,7 @@ namespace Gestion_Stock_Log_Info.Controlleur
             }
             else
             {
-                MessageBox.Show("Aucun élément sélectionné", "erreur");
+                MessageBox.Show("Aucun élément sélectionné", "Opération Impossible");
             }
         }
 
@@ -164,7 +164,12 @@ namespace Gestion_Stock_Log_Info.Controlleur
         /// <param name="ordre"></param>
         public void AfficheFrm(Produit produit, string ordre)
         {
+            string temp = getOrdre();
             setOrdre(ordre);
+            if(temp != getOrdre())
+            {
+                setCommandeDate(DateTime.Today); 
+            }
             switch (ordre)
             {
                 case "modifier":
@@ -199,7 +204,6 @@ namespace Gestion_Stock_Log_Info.Controlleur
                     frmRestock.setLesFournisseurs(produit.getFournisseurs());
                     frmRestock.ShowDialog();
                     break;
-
             }
 
         }

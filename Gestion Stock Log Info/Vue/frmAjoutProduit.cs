@@ -40,7 +40,7 @@ namespace Gestion_Stock_Log_Info.Vue
             {
                 if (controle.DejaDansLaListe(txtNom.Text, controle.getLesProduits()))
                 {
-                    MessageBox.Show("Ce produit existe déjà : " + controle.getLesProduits().Single(p => p.getNom() == txtNom.Text).ToString());
+                    MessageBox.Show("Ce produit existe déjà : " + controle.getLesProduits().Single(p => p.getNom() == txtNom.Text).ToString(), "Opération Impossible");
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace Gestion_Stock_Log_Info.Vue
             }
             else
             {
-                MessageBox.Show("Veuillez renseigner tout les champs");
+                MessageBox.Show("Veuillez renseigner tout les champs", "Opération Impossible");
             }
         }
 
@@ -72,16 +72,42 @@ namespace Gestion_Stock_Log_Info.Vue
         /// <param name="e"></param>
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (txtNomFournisseur.Text != "")
+            if (txtNomFournisseur.Text != "" && txtReference.Text !="")
             {
                 Fournisseur fournisseur = new Fournisseur(txtReference.Text, txtNomFournisseur.Text, Math.Round(nudPrixHTFournisseur.Value, 2), dtpDateDernierAchat.Value);
-                lesFournisseurs.Add(fournisseur);
-                MessageBox.Show(fournisseur.ToString() + " a bien été ajouté");
-                txtNomFournisseur.Text = "";
+                if (lesFournisseurs.Any(f => f.getNom() == fournisseur.getNom()) || lesFournisseurs.Any(f => f.getReference() == fournisseur.getReference()))
+                {
+                    MessageBox.Show("Ce fournisseur existe déjà pour ce produit", "Opération Impossible");
+                }
+                else
+                {
+                    bool ok = true;
+                    for(int k = 0; k < controle.getLesProduits().Count; k++)
+                    {
+                        if(controle.getLesProduits()[k].getFournisseurs().Any(f=> f.getReference() == fournisseur.getReference())){
+                           
+                            ok = false;
+                        }
+                    }
+                    if (ok)
+                    {
+                        lesFournisseurs.Add(fournisseur);
+                        MessageBox.Show(fournisseur.ToString() + " a bien été ajouté", "Succès");
+                        txtNomFournisseur.Text = "";
+                        txtReference.Text = "";
+                        dtpDateDernierAchat.Value = DateTime.Today;
+                        nudPrixHTFournisseur.Value = 0;
+                        nudPrixTTCFournisseur.Value = 0;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Il y a déjà un couple produit/fournisseur ayant cette référence", "Opération Impossible");
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Le nom doit être rempli", "erreur");
+                MessageBox.Show("Tout les champs doivent être remplis", "Opération Impossible");
             }
 
         }

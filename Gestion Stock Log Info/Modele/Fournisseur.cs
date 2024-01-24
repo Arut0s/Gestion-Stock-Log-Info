@@ -64,7 +64,7 @@ namespace Gestion_Stock_Log_Info.Modele
         /// <returns>string fournisseur</returns>
         public override string ToString()
         {
-            return "Reference : " + reference + ", Nom : " + nom + " (" + prixachat.ToString("N2") + "€ (HT) et " + Math.Round(prixachat * (decimal)1.2, 2).ToString("N2") + "€ (TTC)) Date dernier achat : " + datedernierachat.ToShortDateString();
+            return reference + " (" + nom + ") " + prixachat.ToString("N2") + "€ (HT) et " + Math.Round(prixachat * (decimal)1.2, 2).ToString("N2") + "€ (TTC), dernier achat : " + datedernierachat.ToShortDateString();
         }
 
     }

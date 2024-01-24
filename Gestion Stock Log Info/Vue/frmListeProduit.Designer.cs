@@ -49,6 +49,8 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnDecoche = new System.Windows.Forms.Button();
             this.btnRestock = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnQuitter = new System.Windows.Forms.Button();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstProduit
@@ -64,50 +66,53 @@ namespace Gestion_Stock_Log_Info.Vue
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader7});
             this.lstProduit.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lstProduit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstProduit.FullRowSelect = true;
             this.lstProduit.HideSelection = false;
             this.lstProduit.Location = new System.Drawing.Point(12, 96);
+            this.lstProduit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstProduit.MultiSelect = false;
             this.lstProduit.Name = "lstProduit";
-            this.lstProduit.Size = new System.Drawing.Size(1158, 361);
-            this.lstProduit.TabIndex = 0;
+            this.lstProduit.Size = new System.Drawing.Size(1159, 361);
+            this.lstProduit.TabIndex = 9;
             this.lstProduit.UseCompatibleStateImageBehavior = false;
             this.lstProduit.View = System.Windows.Forms.View.Details;
             this.lstProduit.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Column_Click);
             this.lstProduit.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lstProduit_ItemChecked);
-            this.lstProduit.DoubleClick += new System.EventHandler(this.lstProduit_DoubleClick);
+            this.lstProduit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstProduit_KeyDown);
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Nom";
-            this.columnHeader6.Width = 200;
+            this.columnHeader6.Width = 175;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Catégorie";
-            this.columnHeader2.Width = 150;
+            this.columnHeader2.Width = 125;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Quantité";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Prix (HT)";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 80;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Prix (TTC)";
-            this.columnHeader5.Width = 100;
+            this.columnHeader5.Width = 80;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Date dernière vente";
-            this.columnHeader1.Width = 150;
+            this.columnHeader1.Text = "Nombre Fournisseurs";
+            this.columnHeader1.Width = 157;
             // 
             // label1
             // 
@@ -120,16 +125,17 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // txtRecherche
             // 
-            this.txtRecherche.Location = new System.Drawing.Point(12, 27);
+            this.txtRecherche.Location = new System.Drawing.Point(9, 28);
+            this.txtRecherche.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRecherche.Name = "txtRecherche";
             this.txtRecherche.Size = new System.Drawing.Size(193, 22);
-            this.txtRecherche.TabIndex = 2;
+            this.txtRecherche.TabIndex = 0;
             this.txtRecherche.TextChanged += new System.EventHandler(this.txtRecherche_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(208, 7);
+            this.label2.Location = new System.Drawing.Point(205, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 17);
             this.label2.TabIndex = 3;
@@ -137,8 +143,10 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             // cmbFiltre
             // 
+            this.cmbFiltre.DropDownHeight = 9999;
             this.cmbFiltre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFiltre.FormattingEnabled = true;
+            this.cmbFiltre.IntegralHeight = false;
             this.cmbFiltre.Items.AddRange(new object[] {
             "(aucun)",
             "Accessoire",
@@ -160,20 +168,22 @@ namespace Gestion_Stock_Log_Info.Vue
             "Reseau",
             "Sauvegarde Cloud",
             "Tablette"});
-            this.cmbFiltre.Location = new System.Drawing.Point(211, 25);
+            this.cmbFiltre.Location = new System.Drawing.Point(208, 26);
+            this.cmbFiltre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbFiltre.Name = "cmbFiltre";
-            this.cmbFiltre.Size = new System.Drawing.Size(193, 24);
+            this.cmbFiltre.Size = new System.Drawing.Size(189, 24);
             this.cmbFiltre.Sorted = true;
-            this.cmbFiltre.TabIndex = 4;
+            this.cmbFiltre.TabIndex = 1;
             this.cmbFiltre.SelectedIndexChanged += new System.EventHandler(this.cmbFiltre_SelectedIndexChanged);
             // 
             // btnAjouter
             // 
             this.btnAjouter.AutoSize = true;
-            this.btnAjouter.Location = new System.Drawing.Point(551, 12);
+            this.btnAjouter.Location = new System.Drawing.Point(488, 17);
+            this.btnAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(100, 40);
-            this.btnAjouter.TabIndex = 5;
+            this.btnAjouter.Size = new System.Drawing.Size(100, 39);
+            this.btnAjouter.TabIndex = 3;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = true;
             this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
@@ -182,10 +192,11 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.button3.AutoSize = true;
             this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button3.Location = new System.Drawing.Point(995, 59);
+            this.button3.Location = new System.Drawing.Point(993, 65);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(135, 27);
-            this.button3.TabIndex = 7;
+            this.button3.TabIndex = 10;
             this.button3.Text = "create les produits";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -193,20 +204,22 @@ namespace Gestion_Stock_Log_Info.Vue
             // btnInfo
             // 
             this.btnInfo.AutoSize = true;
-            this.btnInfo.Location = new System.Drawing.Point(657, 12);
+            this.btnInfo.Location = new System.Drawing.Point(594, 17);
+            this.btnInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(100, 40);
-            this.btnInfo.TabIndex = 8;
+            this.btnInfo.Size = new System.Drawing.Size(100, 39);
+            this.btnInfo.TabIndex = 4;
             this.btnInfo.Text = "Info";
             this.btnInfo.UseVisualStyleBackColor = true;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(763, 12);
+            this.btnSupprimer.Location = new System.Drawing.Point(700, 17);
+            this.btnSupprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(100, 40);
-            this.btnSupprimer.TabIndex = 9;
+            this.btnSupprimer.Size = new System.Drawing.Size(100, 39);
+            this.btnSupprimer.TabIndex = 5;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
             this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
@@ -214,20 +227,22 @@ namespace Gestion_Stock_Log_Info.Vue
             // btnClear
             // 
             this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnClear.Location = new System.Drawing.Point(410, 12);
+            this.btnClear.Location = new System.Drawing.Point(403, 18);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 40);
-            this.btnClear.TabIndex = 10;
+            this.btnClear.Size = new System.Drawing.Size(52, 38);
+            this.btnClear.TabIndex = 2;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnCommande
             // 
-            this.btnCommande.Location = new System.Drawing.Point(928, 12);
+            this.btnCommande.Location = new System.Drawing.Point(832, 17);
+            this.btnCommande.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCommande.Name = "btnCommande";
-            this.btnCommande.Size = new System.Drawing.Size(100, 40);
-            this.btnCommande.TabIndex = 11;
+            this.btnCommande.Size = new System.Drawing.Size(100, 39);
+            this.btnCommande.TabIndex = 6;
             this.btnCommande.Text = "Commande";
             this.btnCommande.UseVisualStyleBackColor = true;
             this.btnCommande.Click += new System.EventHandler(this.btnCommande_Click);
@@ -235,18 +250,20 @@ namespace Gestion_Stock_Log_Info.Vue
             // btnDecoche
             // 
             this.btnDecoche.Location = new System.Drawing.Point(12, 65);
+            this.btnDecoche.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDecoche.Name = "btnDecoche";
             this.btnDecoche.Size = new System.Drawing.Size(25, 25);
-            this.btnDecoche.TabIndex = 12;
+            this.btnDecoche.TabIndex = 8;
             this.btnDecoche.UseVisualStyleBackColor = true;
             this.btnDecoche.Click += new System.EventHandler(this.btnDecoche_Click);
             // 
             // btnRestock
             // 
-            this.btnRestock.Location = new System.Drawing.Point(1030, 12);
+            this.btnRestock.Location = new System.Drawing.Point(938, 17);
+            this.btnRestock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRestock.Name = "btnRestock";
-            this.btnRestock.Size = new System.Drawing.Size(100, 40);
-            this.btnRestock.TabIndex = 13;
+            this.btnRestock.Size = new System.Drawing.Size(100, 39);
+            this.btnRestock.TabIndex = 7;
             this.btnRestock.Text = "Restock";
             this.btnRestock.UseVisualStyleBackColor = true;
             this.btnRestock.Click += new System.EventHandler(this.btnRestock_Click);
@@ -260,13 +277,33 @@ namespace Gestion_Stock_Log_Info.Vue
             this.label3.TabIndex = 14;
             this.label3.Text = "Tout décocher";
             // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitter.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnQuitter.Location = new System.Drawing.Point(1071, 17);
+            this.btnQuitter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(100, 39);
+            this.btnQuitter.TabIndex = 8;
+            this.btnQuitter.Text = "Quitter";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Date Dernière Vente";
+            this.columnHeader7.Width = 144;
+            // 
             // frmListeProduit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1182, 469);
+            this.CancelButton = this.btnQuitter;
+            this.ClientSize = new System.Drawing.Size(1181, 469);
+            this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRestock);
             this.Controls.Add(this.btnDecoche);
@@ -281,8 +318,10 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstProduit);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmListeProduit";
             this.Text = "Gestion Stock Log Info";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmListeProduit_FormClosing);
             this.Load += new System.EventHandler(this.frmListeProduit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -311,5 +350,7 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Button btnDecoche;
         private System.Windows.Forms.Button btnRestock;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnQuitter;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

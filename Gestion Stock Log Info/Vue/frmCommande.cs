@@ -40,7 +40,7 @@ namespace Gestion_Stock_Log_Info.Vue
             controle.setCommandeDate(dtpDate.Value);
             if(Text == "Restock")
             {
-                controle.setFournisseurRestock(lesFournisseurs.Single(f => cmbFournisseur.SelectedItem.ToString().Contains(f.getNom())));
+                controle.setFournisseurRestock(lesFournisseurs.Single(f => cmbFournisseur.SelectedItem.ToString() == f.ToString()));
             }
             this.Close();
         }
@@ -52,32 +52,10 @@ namespace Gestion_Stock_Log_Info.Vue
         /// <param name="e"></param>
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
+            controle.setCommandeQuantite(0);
             this.Close();
         }
 
-        #endregion
-
-        #region getters et setters
-
-        /// <summary>
-        /// Getter sur le combobox des fournisseurs
-        /// </summary>
-        /// <returns></returns>
-        public ComboBox getCmbFournisseur()
-        {
-            return cmbFournisseur;
-        }
-
-        /// <summary>
-        /// Setter sur la liste des fournisseurs
-        /// </summary>
-        /// <param name="fournisseurs"></param>
-        public void setLesFournisseurs(List<Fournisseur> fournisseurs)
-        {
-            this.lesFournisseurs = fournisseurs;
-        }
-
-        
         #endregion
 
         #region autres evenements
@@ -107,5 +85,28 @@ namespace Gestion_Stock_Log_Info.Vue
         }
 
         #endregion
+
+        #region getters et setters
+
+        /// <summary>
+        /// Getter sur le combobox des fournisseurs
+        /// </summary>
+        /// <returns></returns>
+        public ComboBox getCmbFournisseur()
+        {
+            return cmbFournisseur;
+        }
+
+        /// <summary>
+        /// Setter sur la liste des fournisseurs
+        /// </summary>
+        /// <param name="fournisseurs"></param>
+        public void setLesFournisseurs(List<Fournisseur> fournisseurs)
+        {
+            this.lesFournisseurs = fournisseurs;
+        }
+
+        
+        #endregion  
     }
 }

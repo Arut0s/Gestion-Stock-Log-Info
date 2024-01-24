@@ -1,0 +1,13 @@
+﻿[*.cs]
+
+# IDE1006: Styles d'affectation de noms
+dotnet_diagnostic.IDE1006.severity = none
+
+# IDE0017: Simplifier l'initialisation des objets
+dotnet_diagnostic.IDE0017.severity = none
+
+# IDE0044: Ajouter un modificateur readonly
+dotnet_diagnostic.IDE0044.severity = none
+
+# IDE0028: Simplifier l'initialisation des collections
+dotnet_diagnostic.IDE0028.severity = none
