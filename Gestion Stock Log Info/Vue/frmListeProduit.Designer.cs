@@ -29,6 +29,7 @@ namespace Gestion_Stock_Log_Info.Vue
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListeProduit));
             this.lstProduit = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -36,12 +37,12 @@ namespace Gestion_Stock_Log_Info.Vue
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.txtRecherche = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbFiltre = new System.Windows.Forms.ComboBox();
             this.btnAjouter = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnRestock = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnQuitter = new System.Windows.Forms.Button();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstProduit
@@ -113,6 +113,11 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.columnHeader1.Text = "Nombre Fournisseurs";
             this.columnHeader1.Width = 157;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Date Dernière Vente";
+            this.columnHeader7.Width = 144;
             // 
             // label1
             // 
@@ -187,19 +192,6 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = true;
             this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
-            // 
-            // button3
-            // 
-            this.button3.AutoSize = true;
-            this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button3.Location = new System.Drawing.Point(993, 65);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 27);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "create les produits";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnInfo
             // 
@@ -290,11 +282,6 @@ namespace Gestion_Stock_Log_Info.Vue
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Date Dernière Vente";
-            this.columnHeader7.Width = 144;
-            // 
             // frmListeProduit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -311,13 +298,13 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnInfo);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.cmbFiltre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstProduit);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmListeProduit";
             this.Text = "Gestion Stock Log Info";
@@ -336,7 +323,6 @@ namespace Gestion_Stock_Log_Info.Vue
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbFiltre;
         private System.Windows.Forms.Button btnAjouter;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
