@@ -286,8 +286,6 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnQuitter;
             this.ClientSize = new System.Drawing.Size(1181, 469);
             this.Controls.Add(this.btnQuitter);
@@ -306,6 +304,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Controls.Add(this.lstProduit);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(1199, 516);
             this.Name = "frmListeProduit";
             this.Text = "Gestion Stock Log Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmListeProduit_FormClosing);

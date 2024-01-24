@@ -396,7 +396,6 @@ namespace Gestion_Stock_Log_Info.Vue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.CancelButton = this.btnAnnuler;
             this.ClientSize = new System.Drawing.Size(603, 359);
             this.Controls.Add(this.groupBox2);
@@ -405,6 +404,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(621, 406);
             this.Name = "frmAjoutProduit";
             this.Text = "Ajout d\'un produit";
             ((System.ComponentModel.ISupportInitialize)(this.nudPrixHTProduit)).EndInit();
