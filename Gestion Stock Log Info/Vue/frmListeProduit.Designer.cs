@@ -82,6 +82,7 @@ namespace Gestion_Stock_Log_Info.Vue
             this.lstProduit.View = System.Windows.Forms.View.Details;
             this.lstProduit.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Column_Click);
             this.lstProduit.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lstProduit_ItemChecked);
+            this.lstProduit.DoubleClick += new System.EventHandler(this.lstProduit_DoubleClick);
             this.lstProduit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstProduit_KeyDown);
             // 
             // columnHeader6

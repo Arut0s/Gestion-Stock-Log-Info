@@ -167,6 +167,7 @@ namespace Gestion_Stock_Log_Info.Vue
             if (lstProduit.SelectedIndices.Count == 1)
             {
                 Produit produit = controle.getLesProduits().Single(p => p.getNom() == lstProduit.SelectedItems[0].SubItems[0].Text);
+                produit.setChecked(false);
                 controle.AfficheFrm(produit, "info");
             }
             else if (lstProduit.SelectedIndices.Count == 0)
@@ -671,6 +672,15 @@ namespace Gestion_Stock_Log_Info.Vue
         }
 
         #endregion
+
+        private void lstProduit_DoubleClick(object sender, EventArgs e)
+        {
+            
+            if(lstProduit.SelectedItems.Count > 0)
+            {
+                btnInfo_Click(null, null);
+            }
+        }
     }
 }
 
