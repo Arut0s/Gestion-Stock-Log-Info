@@ -27,13 +27,27 @@ namespace GestionStockLogInfo.outils
         }
         public int Compare(object x, object y)
         {
-            int returnVal = String.Compare(((ListViewItem)x).SubItems[Column].Text,
-            ((ListViewItem)y).SubItems[Column].Text);
+            if (Column == 6)
+            {
+                int returnVal = DateTime.Compare(DateTime.Parse(((ListViewItem)x).SubItems[Column].Text),
+               DateTime.Parse(((ListViewItem)y).SubItems[Column].Text));
 
-            if (Order == SortOrder.Descending)
-                return -returnVal;
+                if (Order == SortOrder.Descending)
+                    return -returnVal;
+                else
+                    return returnVal;
+            }
             else
-                return returnVal;
+            {
+
+                int returnVal = String.Compare(((ListViewItem)x).SubItems[Column].Text,
+                ((ListViewItem)y).SubItems[Column].Text);
+
+                if (Order == SortOrder.Descending)
+                    return -returnVal;
+                else
+                    return returnVal;
+            }
         }
     }
 }
